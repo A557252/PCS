@@ -1,0 +1,27 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.pcs.portal.utils.ConfigurationBinder",
+      "name": "oracle",
+      "type": "com.pcs.portal.utils.ConfigurationBinder"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.pcs.portal.utils.ConfigurationBinder",
+      "name": "oracle.password",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pcs.portal.utils.ConfigurationBinder",
+      "name": "oracle.url",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.pcs.portal.utils.ConfigurationBinder",
+      "name": "oracle.username",
+      "type": "java.lang.String"
+    }
+  ]
+}

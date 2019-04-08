@@ -21,4 +21,8 @@ export class TokenmanagemnetService {
     else
     return false;
   }
+
+  logoutUser(){
+    localStorage.clear();
+  }
 }

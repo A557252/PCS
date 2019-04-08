@@ -9,6 +9,6 @@ export class AuthenticationService {
   constructor(private Http:HttpClient) { }
 
   signIn(data){
-    return this.Http.post("http://localhost:9000/sigin",data);
+    return this.Http.post("http://localhost:9000/auth/signin",data);
   }
 }

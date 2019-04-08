@@ -15,7 +15,7 @@ export class AuthenticationGuard implements CanActivate  {
     if(this.tokenManagement.isLoggedIn()){
       return true;
     }else{
-      this.router.navigate(['login'])
+      this.router.navigate(['/login'])
       return false;
     }
 
