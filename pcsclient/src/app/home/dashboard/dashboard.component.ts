@@ -9,6 +9,11 @@ import { TokenmanagemnetService } from 'src/app/shared/services/tokenmanagemnet.
 })
 export class DashboardComponent implements OnInit {
 
+  selectedFiles:FileList;
+  currentFileUpload:File;
+  updatedFileSuccess:boolean=false;
+  updatedFileFailure:boolean=false;
+  progress :{percentage:number}={percentage:0};
   constructor(private router:Router,private tokenService:TokenmanagemnetService) { }
 
   ngOnInit() {
@@ -19,4 +24,11 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  selecteFile(event){
+    this.selectedFiles=event.target.files;
+    let reader=new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload=()=>{
+    }
+  }
 }
