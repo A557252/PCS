@@ -8,20 +8,27 @@ import { AuthenticationService } from './shared/services/authentication.service'
 import { AuthenticationGuard } from './shared/guards/authentication.guard';
 import { HomeModule } from './home/home.module';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { IncraImportWizardComponent } from './incra-import-wizard/incra-import-wizard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material/material.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    PagenotfoundComponent
+    PagenotfoundComponent,
+    IncraImportWizardComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     HomeModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MaterialModule,
   ],
   providers: [AuthenticationService,AuthenticationGuard],
   bootstrap: [AppComponent]
