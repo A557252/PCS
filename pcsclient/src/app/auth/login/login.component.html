@@ -1,119 +1,71 @@
-<div class="page-header header-filter" style="background-image: url('../assets/img/bg7.jpg'); background-size: cover; background-position: top center;">
+<div class="custom-header">
+<div class="page-header header-filter custom-headers">
   <div class="container">
     <div class="row">
       <div class="col-lg-4 col-md-6 ml-auto mr-auto">
         <div class="card card-login">
-          <form class="login-form" #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm)">
+          <form class="login-form" #loginForm="ngForm" (ngSubmit)="submitLoginForm(loginForm.value)">
             <div class="card-header card-header-primary text-center">
-              <h4 class="card-title"><img src="../assets/img/AFKL_Logo_login.png" alt="" title="">
-                <br/><br/>FSP Login</h4>
+              <h4 class="card-title custom-title"><img src="../assets/img/AFKL_Logo_login.png" alt="" title="">
+                <br /><br />FSP Login</h4>
             </div>
             <div class="card-body">
               <div class="input-group" *ngIf="loggedInFail">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="material-icons" style="color: red">error</i>
-                </span>
-                <p style="color:red">
-                  Error in the login form
-                </p>
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons custom-error-tag">error</i>
+                  </span>
+                  <p class="custom-error-tag">
+                    Error in the login form
+                  </p>
+                </div>
               </div>
-            </div>
-
-            <div class="input-group" *ngIf="loggedInTrue">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="material-icons" style="color: green">error</i>
-                </span>
-                <p style="color:green">
-                  Error in the login form
-                </p>
-              </div>
-            </div>
-            
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
                     <i class="material-icons">perm_identity</i>
                   </span>
                 </div>
-                <input 
-                type="text" 
-                class="form-control" 
-                placeholder="Username..."
-                ngModel
-                #username="ngModel"
-                name="username"
-                required
-                >
+                <input type="text" class="form-control" placeholder="Username..." ngModel #username="ngModel"
+                  name="username" required>
               </div>
-           
-            <!-- <div class="input-group" *ngIf="!username.valid && username.touched">
-              <div class="input-group-prepend">
-                <span class="input-group-text">
-                  <i class="material-icons">error</i>
-                </span>
-              </div>
-              <div >
-                <div *ngIf="username.errors.pattern">
-                  please enter correct username
-                </div>
-            </div> 
-          
-          </div> -->
               <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">
-                      <i class="material-icons">lock_outline</i>
-                    </span>
-                  </div>
-                  <input 
-                  type="password" 
-                  class="form-control" 
-                  placeholder="Password..."
-                  ngModel
-                  #password="ngModel"
-                  name="password"
-                  required
-                  >
+                <div class="input-group-prepend">
+                  <span class="input-group-text">
+                    <i class="material-icons">lock_outline</i>
+                  </span>
                 </div>
+                <input type="password" class="form-control" placeholder="Password..." ngModel #password="ngModel"
+                  name="password" required>
+              </div>
               <div class="input-group">
                 <div class="input-group-prepend">
                   <span class="input-group-text">
                     <i class="material-icons">dns</i>
                   </span>
                 </div>
-                <div class="dropdown">
-                    <select 
-                    style="width: 253px" 
-                    class="btn btn-secondary dropdown-toggle" 
-                    type="button" 
-                    id="dropdownMenuButton" 
-                    data-toggle="dropdown" 
-                    aria-haspopup="true" 
-                    aria-expanded="false"
-                    [(ngModel)]="environmentValue"
-                    name="environment"
-                    #environment="ngModel"
-                    required
-                    >
-                      Environment
-                      <option class="dropdown-item btn btn-secondary" value="Production">Production</option>
-                      <option class="dropdown-item btn btn-secondary" value="Acceptance">Acceptance</option>
+                  <select class="browser-default custom-select" type="button"
+                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                    [(ngModel)]="environmentValue" name="environment" #environment="ngModel" required>
+                    Environment
+                    <option class="dropdown-item btn btn-secondary" value="Production">Production</option>
+                    <option class="dropdown-item btn btn-secondary" value="Acceptance">Acceptance</option>
                   </select>
-                  </div>
               </div>
             </div>
-            <div class="text-center">
-              <button 
-              type="submit" 
-              class="btn btn-primary btn-small"
-              [disabled]="loginForm.invalid"
-              >Get Started</button>
+            <div class="text-center custom-padding">
+              <button type="submit" class="btn btn-primary btn-small custom-color" [disabled]="loginForm.invalid">Get
+                Started</button>
             </div>
           </form>
         </div>
       </div>
+      
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 ml-auto mr-auto">
+        <p class="footer-custom">&copy; 2019, AIR FRANCE KLM</p>
+        </div>
     </div>
   </div>
-  </div>
+</div>

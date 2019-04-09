@@ -28,8 +28,7 @@ public class AuthenticationController {
     @PostMapping(value = "/signin")
     public ApiResponse<AuthToken> register(@RequestBody LoginUser loginUser) {
 
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));
-        
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));        
         final User user = userService.findOne(loginUser.getUsername());
         final String token = jwtTokenUtil.generateToken(user);
         return new ApiResponse<>(200, "success",new AuthToken(token, user.getUsername()));

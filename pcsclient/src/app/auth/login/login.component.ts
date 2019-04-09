@@ -11,26 +11,23 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   environmentValue:string="Production";
-  loggedInFail:boolean;
-  loggedInTrue:boolean;
+  loggedInFail:boolean=false;
+  loggedInTrue:boolean=false;
   constructor(private authenticationService:AuthenticationService,private tokenManagement:TokenmanagemnetService,private router:Router) { }
   
   ngOnInit() {
   }
 
-  submitLoginForm(loginForm:NgForm){
-    this.authenticationService.signIn(loginForm.value)
-    .subscribe(
-      (response:any)=>{
-        this.tokenManagement.setToken(response.result.token);
-        console.log(response);
-        this.router.navigate(['dashboard']);
-      },
-      error=>{
-        console.log("logged in failed"+error)
-        this.loggedInFail=true;
-      }
-    );
+  submitLoginForm(loginFormData){
+    console.log(loginFormData)
+    let res=this.authenticationService.signIn(loginFormData);
+    if(res){
+      this.router.navigate(['dashboard']);
+      this.loggedInTrue=true;
+    }
+    else{
+      this.loggedInFail=true;
+    }
   }
 
 }
