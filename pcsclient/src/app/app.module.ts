@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IncraImportWizardComponent } from './incra-import-wizard/incra-import-wizard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
+import { SideMenuComponent } from './side-menu/side-menu.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { MaterialModule } from './shared/material/material.module';
     AppComponent,
     PagenotfoundComponent,
     IncraImportWizardComponent,
+    SideMenuComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +33,6 @@ import { MaterialModule } from './shared/material/material.module';
     MaterialModule,
   ],
   providers: [AuthenticationService,AuthenticationGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

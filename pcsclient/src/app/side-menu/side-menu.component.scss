@@ -1,0 +1,42 @@
+.side_nav_header{
+    padding: 25px 0 10px;
+    width: 80%;
+    float: right;
+    font-family: cursive;
+    height: 35px;
+    float: left;
+    color: #696b79;
+    position: absolute;
+    left: 20px;
+}
+.side_nav_sub_header{
+    background-color: #fff;
+   // padding: 55px 15px 0 27px;
+    list-style-type: none;
+}
+mat-sidenav {
+    box-shadow: 3px 0 6px rgba(0,0,0,.24);
+    width: 270px;
+}
+.side_nav_header_test {
+    height:80px;
+    border-bottom: 1px solid #eaeaec;
+}
+.home_card {
+    background-color: #00BED6;
+    color: white;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.24);
+}
+.side_nav_title_font {
+    color: #A8AFB8;
+}
+.nav_menu_li{
+    height: 48px;
+    cursor: pointer;
+    &:hover{
+        background: rgba(0,0,0,.04);
+    }
+}
+mat-sidenav-container {
+    background-color: #EFEFEF;
+}

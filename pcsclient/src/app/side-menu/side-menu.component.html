@@ -1,0 +1,56 @@
+<mat-sidenav-container fullscreen>
+  <mat-sidenav opened #sidenav mode="side" class="mat_sidenav_style">
+    <ng-container>
+      <div class="d-flex flex-column">
+        <div class="p-4 side_nav_header_test">
+          <span><b> Menu </b></span>
+        </div>
+        <mat-card class="home_card mx-3 my-2">
+          <mat-card-content>
+            <div class="d-flex align-items-center">
+              <mat-icon class="mr-2">home</mat-icon>
+              <span class="ml-3"> Home</span>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <ul class="side_nav_sub_header px-3">
+          <ng-container *ngFor="let sideNav of sideNavList">
+            <li *ngIf="!sideNav.subMenu; else elseBlock" [routerLink]="[sideNav.link]" class="my-2 nav_menu_li d-flex align-items-center px-3">
+              <div class="d-flex align-items-center">
+                <mat-icon class="side_nav_title_font mr-2">{{sideNav.icon}}</mat-icon>
+                <span class="side_nav_title_font ml-3"> {{sideNav.title}}</span>
+              </div>
+            </li>
+            <ng-template #elseBlock>
+              <li class="my-2 side_nav_sub_header">
+                <mat-accordion displayMode="flat" style>
+                  <mat-expansion-panel style="box-shadow: none;">
+                    <mat-expansion-panel-header class="px-3">
+                      <mat-panel-title>
+                        <div class="d-flex align-items-center">
+                            <mat-icon class="side_nav_title_font mr-2">{{sideNav.icon}}</mat-icon>
+                            <span class="side_nav_title_font ml-3"> {{sideNav.title}}</span>  
+                        </div>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <ng-container *ngFor="let subMenu of sideNav.subMenu">
+                      <li class="my-3 nav_menu_li d-flex align-items-center px-3" [routerLink]="subMenu.link">
+                        <div class="d-flex align-items-center">
+                            <mat-icon class="side_nav_title_font mr-2">{{subMenu.icon}}</mat-icon>
+                            <span class="side_nav_title_font ml-3"> {{subMenu.title}}</span>  
+                        </div>
+                      </li>
+                    </ng-container>
+              </mat-expansion-panel>
+              </mat-accordion>
+              </li>
+            </ng-template>
+          </ng-container>
+        </ul>
+      </div>
+    </ng-container>
+  </mat-sidenav>
+  <mat-sidenav-content>
+      <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
