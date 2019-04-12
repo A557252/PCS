@@ -17,8 +17,8 @@ export class SideMenuComponent implements OnInit {
     {
       title: 'Wizards', icon: 'W',
       subMenu: [
-        { title: 'Snapshot/Compose Schedule Wizard', icon: 'SW',  },
-        { title: 'Interface Wizard', icon: 'IW',  },
+        { title: 'Snapshot/Compose Schedule Wizard', icon: 'SW', link: 'exports/batchscheduling' },
+        { title: 'Interface Wizard', icon: 'IW', link: './wizards/submitImportIncraWizard'  },
         { title: 'Incra Import Wizard', icon: 'IIW', link: './wizards/incrawizard', }
       ]
     },

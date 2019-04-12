@@ -1,0 +1,76 @@
+<app-card-layout [cardContainerStyle]="'90px'" [cardIcon]="'import_export'">
+  <form class="example-form" [formGroup]="incraForm">
+    <div class="row">
+      <div class="col-2">
+        <label>Job</label>
+      </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="scheduleName">
+        </mat-form-field>
+      </div>
+      <div class="col-2">
+        <label>Schedule</label>
+      </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="scheduleName">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <label>Parameters</label>
+      </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="scheduleName">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <label>Remarks</label>
+      </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="group">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <label>Schedule Date</label>
+      </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="scheduleName">
+        </mat-form-field>
+      </div>
+      <div class="col">
+        <label>Start Date</label>
+      </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="scheduleName">
+        </mat-form-field>
+      </div>
+      <div class="col-2">
+        <label>End Date</label>
+      </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="scheduleName">
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="flex-row d-flex">
+      <div>
+        <button mat-raised-button class="button_style">OK</button>
+      </div>
+      <div class="ml-auto">
+        <button mat-raised-button class="button_style ">CANCEL</button>
+      </div>
+    </div>
+  </form>
+</app-card-layout>

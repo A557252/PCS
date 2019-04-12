@@ -1,51 +1,44 @@
-<div class="container" style="margin-top: 114px;">
-<div class="row ">
-  <mat-card class="mt-5 w-100">
-    <div class="import_export">
-      <mat-icon>import_export</mat-icon>
+<app-card-layout [cardContainerStyle]="'144px'" [cardIcon]="'import_export'">
+  <form class="example-form" [formGroup]="incraForm">
+    <div class="row">
+      <div class="col-3">
+        <label>INCRA Continues or Dated file</label>
+      </div>
+      <div class="col-4">
+        <mat-card class="choose_file">
+          <div class="ml-2">
+            <input type="file" id="incraFile" name="myFile" class="text-white" (change)="onFileChange($event);">
+          </div>
+        </mat-card>
+      </div>
     </div>
-    <form class="example-form" [formGroup]="incraForm">
-      <div class="row">
-        <div class="col-3">
-          <label>INCRA Continues or Dated file</label>
-        </div>
-        <div class="col-4">
-          <mat-card class="choose_file">
-            <div class="ml-2">
-              <input type="file" id="incraFile" name="myFile" class="text-white" (change)="onFileChange($event);">
-            </div>
-          </mat-card>
-        </div>
+    <div class="row">
+      <div class="col-3">
+        <label>Schedule Name</label>
       </div>
-      <div class="row">
-        <div class="col-3">
-          <label>Schedule Name</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
-          </mat-form-field>
-        </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="scheduleName">
+        </mat-form-field>
       </div>
-      <div class="row">
-        <div class="col-3">
-          <label>Group</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="group">
-          </mat-form-field>
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <label>Group</label>
       </div>
-      <div class="flex-row d-flex">
-        <div>
-          <button mat-raised-button class="button_style" (click)="upload()">IMPORT</button>
-        </div>
-        <div class="ml-auto">
-          <button mat-raised-button class="button_style">CANCEL</button>
-        </div>
+      <div class="col">
+        <mat-form-field class="w-100">
+          <input matInput formControlName="group">
+        </mat-form-field>
       </div>
-    </form>
-  </mat-card>
-</div>
-</div>
+    </div>
+    <div class="flex-row d-flex">
+      <div>
+        <button mat-raised-button class="button_style" (click)="upload()">IMPORT</button>
+      </div>
+      <div class="ml-auto">
+        <button mat-raised-button class="button_style">CANCEL</button>
+      </div>
+    </div>
+  </form>
+</app-card-layout>

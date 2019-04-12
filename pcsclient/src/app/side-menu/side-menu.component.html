@@ -56,6 +56,23 @@
       </div>
   </mat-sidenav>
   <mat-sidenav-content>
+      <mat-toolbar class="d-flex">
+          <div class="mr-4">
+            <button mat-fab class="toolbar_text bg-white" style="width: 40px;">
+              <mat-icon aria-label="Example icon-button with a heart icon">more_vert</mat-icon>
+            </button>
+          </div>
+          <div><label>Incra Import Wizard</label></div>
+          <div class="ml-auto">
+            <button mat-icon-button class="mr-3">
+              <mat-icon matBadge="5" matBadgeColor="warn" aria-label="Example icon-button with a heart icon">notifications
+              </mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon aria-label="Example icon-button with a heart icon">person</mat-icon>
+            </button>
+          </div>
+        </mat-toolbar>
       <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
