@@ -15,6 +15,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { ExportsModule } from './exports/exports.module';
 import { IncraImportWizardSubmitComponent } from './incra-import-wizard/incra-import-wizard-submit/incra-import-wizard-submit.component';
 import { SharedModule } from './shared/material/shared.module';
+import { DialogComponent } from './shared/dialog/dialog.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { SharedModule } from './shared/material/shared.module';
     PagenotfoundComponent,
     IncraImportWizardComponent,
     SideMenuComponent,
-    IncraImportWizardSubmitComponent
+    IncraImportWizardSubmitComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -38,5 +40,6 @@ import { SharedModule } from './shared/material/shared.module';
   ],
   providers: [AuthenticationService,AuthenticationGuard],
   bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }
