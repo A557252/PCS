@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
-import { DashboardComponent } from './home/dashboard/dashboard.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { AuthenticationGuard } from './shared/guards/authentication.guard';
 import { IncraImportWizardComponent } from './incra-import-wizard/incra-import-wizard.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { BatchSchedulingsComponent } from './exports/batch-schedulings/batch-schedulings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,6 +14,7 @@ const routes: Routes = [
     path: 'dashboard', component: SideMenuComponent, canActivate: [AuthenticationGuard],
     children: [
       { path: 'wizards/incrawizard', component: IncraImportWizardComponent },
+      {path:'exports/batchscheduling',component:BatchSchedulingsComponent}
     ],
   },
   { path: '**', component: PagenotfoundComponent }

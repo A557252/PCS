@@ -13,6 +13,7 @@ import { IncraImportWizardComponent } from './incra-import-wizard/incra-import-w
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
+import { ExportsModule } from './exports/exports.module';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     AppComponent,
     PagenotfoundComponent,
     IncraImportWizardComponent,
-    SideMenuComponent,
+    SideMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +32,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialModule,
+    ExportsModule
   ],
   providers: [AuthenticationService,AuthenticationGuard],
   bootstrap: [AppComponent],

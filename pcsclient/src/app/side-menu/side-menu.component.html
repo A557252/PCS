@@ -49,6 +49,11 @@
         </ul>
       </div>
     </ng-container>
+    <div class="d-flex flex-column">
+        <button class="btn btn-primary" (click)="logoutUser()">
+          logout
+        </button>
+      </div>
   </mat-sidenav>
   <mat-sidenav-content>
       <router-outlet></router-outlet>

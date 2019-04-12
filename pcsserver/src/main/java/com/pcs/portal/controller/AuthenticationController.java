@@ -25,13 +25,18 @@ public class AuthenticationController {
     private UserService userService;
 
 
-    @PostMapping(value = "/signin")
+    @PostMapping(value = "/login")
     public ApiResponse<AuthToken> register(@RequestBody LoginUser loginUser) {
 
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUser.getUsername(), loginUser.getPassword()));        
         final User user = userService.findOne(loginUser.getUsername());
+        if(user.getEnvironment().equalsIgnoreCase(loginUser.getEnvironment())) {
         final String token = jwtTokenUtil.generateToken(user);
         return new ApiResponse<>(200, "success",new AuthToken(token, user.getUsername()));
+        }else {
+        	//user environment not equal
+        	String error_return="{'message':'aunthentication failure'}";
+        	return new ApiResponse<>(401, "failure",error_return);
+        }
     }
-
 }

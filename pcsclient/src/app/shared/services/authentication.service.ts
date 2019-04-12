@@ -7,19 +7,9 @@ import { TokenmanagemnetService } from './tokenmanagemnet.service';
 })
 export class AuthenticationService {
 
-  constructor(private Http:HttpClient,private tokenManagement:TokenmanagemnetService) { }
+  constructor(private Http:HttpClient) { }
 
   signIn(data){
-    this.Http.post("http://localhost:9000/auth/signin",data)
-    .subscribe(
-      (response:any)=>{
-        this.tokenManagement.setToken(response.result.token);
-        return true;
-      },
-      error=>{
-        return false;
-      }
-    );
-    return false;
+    return this.Http.post("http://localhost:9000/auth/login",data)
   }
 }

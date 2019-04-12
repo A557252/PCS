@@ -1,43 +1,43 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { AuthenticationService } from './authentication.service';
-import {HttpClientTestingModule} from '@angular/common/http/testing';
-import { TokenmanagemnetService } from './tokenmanagemnet.service';
+import { TestBed } from '@angular/core/testing';
+import { TestModule } from 'src/test-helpers/test.module';
+import { AuthenticationServiceMock } from 'src/test-helpers/AuthenticationServiceMock';
 
 describe('AuthenticationService', () => {
-  let component: AuthenticationService;
-  let fixture: ComponentFixture<AuthenticationService>;
+
+  let service:AuthenticationServiceMock;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports:[HttpClientTestingModule],
-    providers:[AuthenticationService]
+      imports:[TestModule],
+      providers:[AuthenticationServiceMock]
   });
 
-  fixture=TestBed.createComponent(AuthenticationService);
+  service=TestBed.get(AuthenticationServiceMock);
+
 }); 
 
 it('login true', () => {
-  let return_data=component.signIn({'username':'pravesh','password':'pravesh','environment':'Acceptance'});
+  let return_data=service.signIn({'username':'pravesh','password':'pravesh','environment':'Acceptance'});
   expect(return_data).toBeTruthy();
 });
 
 it('wrong credential login false', () => {
-  let return_data=component.signIn({'username':'ramesh','password':'pravesh','environment':'Acceptance'});
+  let return_data=service.signIn({'username':'ramesh','password':'pravesh','environment':'Acceptance'});
   expect(return_data).toBeFalsy();
 });
 
 it('empty value login false', () => {
-  let return_data=component.signIn({'username':' ','password':' ','environment':' '});
+  let return_data=service.signIn({'username':' ','password':' ','environment':' '});
   expect(return_data).toBeFalsy();
 });
 
 it('only user name password login false', () => {
-  let return_data=component.signIn({'username':'pravesh','password':'pravesh','environment':' '});
+  let return_data=service.signIn({'username':'pravesh','password':'pravesh','environment':' '});
   expect(return_data).toBeFalsy();
 });
 
 it('no data passed login false', () => {
-  let return_data=component.signIn({});
+  let return_data=service.signIn({});
   expect(return_data).toBeFalsy();
 });
 

@@ -21,7 +21,6 @@ export class DashboardComponent implements OnInit {
 
   gotoLogout(){
     this.tokenService.logoutUser();
-    this.router.navigate(['/login']);
   }
 
   selecteFile(event){

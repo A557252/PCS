@@ -1,8 +1,8 @@
 package com.pcs.portal.utils;
 
-/**
- * @author Sandeep GUpta
- */
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 public interface Constants {
 	public static String SUCCESS_STATUS = "{\"Status\" : true ,";
@@ -20,4 +20,8 @@ public interface Constants {
     public static String DELETED_FAILURE = "\"Message\" : \"Deletion Failed\"}";
     public static String GET_SUCCESS = "\"Message\" : \"Fetched Successful\"}";
     public static String GET_FAILURE = "\"Message\" : \"Fetching Failed\"}";
+    
+    //initially trying with local
+	public static final Path ROOTFILE_LOCATION=Paths.get("C:\\klm-poc\\dataDummy");
+	
 }

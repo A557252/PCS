@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { TokenmanagemnetService } from 'src/app/shared/services/tokenmanagemnet.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,23 +11,46 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   environmentValue:string="Production";
-  loggedInFail:boolean=false;
-  loggedInTrue:boolean=false;
-  constructor(private authenticationService:AuthenticationService,private tokenManagement:TokenmanagemnetService,private router:Router) { }
+  loggedInFail:boolean;
+  loggedInTrue:boolean;
+  returnUrl:string;
+
+  constructor(private route:ActivatedRoute,private authenticationService:AuthenticationService,private tokenManagement:TokenmanagemnetService,private router:Router) { }
   
   ngOnInit() {
+    this.returnUrl=this.route.snapshot.queryParams['returnUrl'] || '/dashboard/wizards/incrawizard';
   }
 
-  submitLoginForm(loginFormData){
-    console.log(loginFormData)
-    let res=this.authenticationService.signIn(loginFormData);
-    if(res){
-      this.router.navigate(['dashboard']);
+  submitLoginForm(loginFormData){   
+    if(this.signInLogin(loginFormData)){
       this.loggedInTrue=true;
     }
     else{
-      this.loggedInFail=true;
     }
+  }
+
+  signInLogin(loginFormData):boolean{
+    let result:boolean;
+    this.authenticationService.signIn(loginFormData)
+    .subscribe(
+      (response:any)=>{
+          if(response.status=='200'){
+          this.tokenManagement.setToken(response.result.token);
+          this.router.navigateByUrl(this.returnUrl);
+          console.log(response);
+          result=true;
+        }else{
+          this.loggedInFail=true;
+          result=false;
+        }
+        },
+      error=>{
+        console.log("error returned");
+        this.loggedInFail=true;
+        result=false;
+      }
+    );
+      return result;
   }
 
 }

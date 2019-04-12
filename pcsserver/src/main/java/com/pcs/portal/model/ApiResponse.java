@@ -6,7 +6,11 @@ public class ApiResponse<T> {
     private String message;
     private Object result;
 
-    public ApiResponse(int status, String message, Object result) {
+    public ApiResponse() {
+		super();
+	}
+
+	public ApiResponse(int status, String message, Object result) {
         this.status = status;
         this.message = message;
         this.result = result;
