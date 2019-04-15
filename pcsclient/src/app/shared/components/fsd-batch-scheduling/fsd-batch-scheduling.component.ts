@@ -4,19 +4,21 @@ import { FsdSchedulingServicesService } from '../../services/fsd-scheduling-serv
 @Component({
   selector: 'app-fsd-batch-scheduling',
   templateUrl: './fsd-batch-scheduling.component.html',
-  styleUrls: ['./fsd-batch-scheduling.component.sass']
+  styleUrls: ['./fsd-batch-scheduling.component.scss']
 })
 export class FsdBatchSchedulingComponent implements OnInit {
 
-  fsdData=[];
+  fsdData;
+  showSpinner:boolean=true;
   constructor(private fsdBatchScheduling:FsdSchedulingServicesService) { }
 
   ngOnInit() {
     this.fsdBatchScheduling.getAllFsdSchedulingData()
     .subscribe(
-      (response=[])=>{
-        this.fsdData.push(response);
-        console.log(response)
+      (response:any)=>{
+        this.fsdData=response.result;
+        this.showSpinner=false;
+        console.log(response);
       },
       error=>{
         console.log("some error ocured");

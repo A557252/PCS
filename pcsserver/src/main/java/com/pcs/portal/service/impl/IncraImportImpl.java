@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.pcs.portal.dao.FSD_Batch_SchedulingDao;
+import com.pcs.portal.model.FileResponse;
 import com.pcs.portal.model.FsdBatchScheduling;
 import com.pcs.portal.service.IncraImport;
 
@@ -31,10 +32,11 @@ public class IncraImportImpl implements IncraImport {
 	}
 
 	@Override
-	public String makeEntryDb(MultipartFile incraFile) {
+	public FileResponse makeEntryDb(MultipartFile incraFile) {
 		String fileName=incraFile.getOriginalFilename();
 		String line;
 		String parameters="";
+		String fileType="";
 		FsdBatchScheduling fsdBatchScheduling;
 		InputStream readFile;
 		try {
@@ -45,16 +47,18 @@ public class IncraImportImpl implements IncraImport {
 				//parameter value calculation
 				String dataArray[]=line.trim().split(" ");
 				if(dataArray[0].contentEquals("C")) {
-					parameters= "'"+fileName+"','"+dataArray[1]+"','"+dataArray[2]+"'";
+					parameters= "'"+fileName+"','"+"','"+"'";
+					fileType="C";
 				}if(dataArray[0].contentEquals("D")) {
 					parameters= "'"+fileName+"','"+dataArray[1]+"','"+dataArray[2]+"'";
+					fileType="D";
 				}
 			}
 			
-			return parameters;
+			return new FileResponse(parameters, fileType);
 			
 		} catch (IOException e) {}
-		return "";
+		return new FileResponse("error", "");
 	}
 
 	

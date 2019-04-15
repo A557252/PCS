@@ -1,4 +1,12 @@
-<div class="container" style="margin-top: 114px;">
+<div class="container" style="margin-top: 114px;" *ngIf="!showOtherPartOfForm">
+  <div class="col-xs-6 col-md-offset-2">
+<div *ngIf="currentFileUpload" class="progress">
+  <div class="progress-bar progress-bar-info progress-bar-striped"
+    role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+    aria-valuemin="0" aria-valuemax="100"
+    [ngStyle]="{width:progress.percentage+'%'}">
+    {{progress.percentage}}%</div>
+</div>
 <div class="row ">
   <mat-card class="mt-5 w-100">
     <div class="import_export">
@@ -23,7 +31,7 @@
         </div>
         <div class="col">
           <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
+            <input matInput formControlName="scheduleName" readonly>
           </mat-form-field>
         </div>
       </div>
@@ -33,19 +41,102 @@
         </div>
         <div class="col">
           <mat-form-field class="w-100">
-            <input matInput formControlName="group">
+            <input matInput formControlName="group" readonly>
           </mat-form-field>
         </div>
       </div>
       <div class="flex-row d-flex">
         <div>
-          <button mat-raised-button class="button_style" (click)="upload()">IMPORT</button>
+          <button mat-raised-button class="button_style" (click)="getParameters()">IMPORT</button>
         </div>
         <div class="ml-auto">
           <button mat-raised-button class="button_style">CANCEL</button>
         </div>
       </div>
     </form>
+  </mat-card>
+</div>
+</div>
+</div>
+
+
+<div class="container" style="margin-top: 114px;" *ngIf="showOtherPartOfForm">
+<div class="row ">
+  <mat-card class="mt-5 w-100">
+    <div class="import_export">
+      <mat-icon>import_export</mat-icon>
+    </div>
+    <div class="card-body ">
+        <form [formGroup]="confirmationForm">
+            <input type="file" formControlName="incraFile" class="form-control" hidden>
+            <div class="row">
+            <label class="col-sm-2 col-form-label">Job</label>
+            <div class="col-sm-4">
+                <div class="form-group bmd-form-group is-filled">
+                <input type="text" formControlName="job" class="form-control" readonly>
+                </div>
+            </div>
+            <!-- </div>
+            <div class="row"> -->
+            <label class="col-sm-2 col-form-label">Schedule</label>
+            <div class="col-sm-4">
+                <div class="form-group bmd-form-group is-filled">
+                <input type="text" formControlName="schedule" class="form-control" readonly>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Parameters</label>
+                <div class="col-sm-10">
+                    <div class="form-group bmd-form-group is-filled">
+                    <input type="text" formControlName="parameter" class="form-control" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Remarks</label>
+                <div class="col-sm-10">
+                    <div class="form-group bmd-form-group is-filled">
+                    <textarea rows="1" formControlName="remarks" class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label">Schedule Date</label>
+                <div class="col-sm-2">
+                    <div class="form-group bmd-form-group is-filled">
+                    <input type="text" formControlName="scheduleDate" class="form-control datetimepicker">
+                </div>
+            </div>
+            <!-- </div>
+            <div class="row"> -->
+                    <label class="col-sm-2 col-form-label">Start Date</label>
+                    <div class="col-sm-2">
+                        <div class="form-group bmd-form-group is-filled">
+                        <input type="text" class="form-control datetimepicker" readonly>
+                        </div>
+                    </div>
+                    <!-- </div>
+                    <div class="row"> -->
+                    <label class="col-sm-2 col-form-label">End Date</label>
+                    <div class="col-sm-2">
+                        <div class="form-group bmd-form-group is-filled">
+                       <input type="text" class="form-control datetimepicker" readonly>
+                        </div>
+                    </div>
+            </div>
+            <div class="flex-row d-flex">
+        <div>
+          <button mat-raised-button class="button_style" (click)="submitConfirmationForm()">OK</button>
+        </div>
+        <div class="ml-auto">
+          <button mat-raised-button class="button_style">CANCEL</button>
+        </div>
+      </div>
+        </form>
+        
+    </div>
+    
   </mat-card>
 </div>
 </div>

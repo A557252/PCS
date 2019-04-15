@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './shared/material/material.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { ExportsModule } from './exports/exports.module';
+import { MatProgressBarModule, MatDialogModule } from '@angular/material';
 
 
 @NgModule({
@@ -32,7 +33,9 @@ import { ExportsModule } from './exports/exports.module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     MaterialModule,
-    ExportsModule
+    ExportsModule,
+    MatProgressBarModule,
+    MatDialogModule
   ],
   providers: [AuthenticationService,AuthenticationGuard],
   bootstrap: [AppComponent],
