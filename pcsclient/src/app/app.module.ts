@@ -15,6 +15,7 @@ import { MaterialModule } from './shared/material/material.module';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { ExportsModule } from './exports/exports.module';
 import { MatProgressBarModule, MatDialogModule } from '@angular/material';
+import { NotImplementedComponent } from './not-implemented/not-implemented.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { MatProgressBarModule, MatDialogModule } from '@angular/material';
     AppComponent,
     PagenotfoundComponent,
     IncraImportWizardComponent,
-    SideMenuComponent
+    SideMenuComponent,
+    NotImplementedComponent
   ],
   imports: [
     BrowserModule,
