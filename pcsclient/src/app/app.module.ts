@@ -16,7 +16,10 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { ExportsModule } from './exports/exports.module';
 import { MatProgressBarModule, MatDialogModule } from '@angular/material';
 import { NotImplementedComponent } from './not-implemented/not-implemented.component';
-import { IncraImpotWizardSubmitComponent } from './incra-import-wizard/incra-impot-wizard-submit/incra-impot-wizard-submit.component';
+import { IncraImportWizardSubmitComponent } from './incra-import-wizard/incra-impot-wizard-submit/incra-impot-wizard-submit.component';
+import { SharedModule } from './shared/material/shared.module';
+import { DialogComponent } from './shared/dialog/dialog.component';
+import { CardLayoutComponent } from './shared/components/card-layout/card-layout.component';
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import { IncraImpotWizardSubmitComponent } from './incra-import-wizard/incra-imp
     IncraImportWizardComponent,
     SideMenuComponent,
     NotImplementedComponent,
-    IncraImpotWizardSubmitComponent
+    IncraImportWizardSubmitComponent,
+    CardLayoutComponent
   ],
   imports: [
     BrowserModule,
@@ -38,10 +42,10 @@ import { IncraImpotWizardSubmitComponent } from './incra-import-wizard/incra-imp
     ReactiveFormsModule,
     MaterialModule,
     ExportsModule,
-    MatProgressBarModule,
-    MatDialogModule
+    SharedModule
   ],
   providers: [AuthenticationService,AuthenticationGuard],
   bootstrap: [AppComponent],
+  entryComponents:[DialogComponent]
 })
 export class AppModule { }
