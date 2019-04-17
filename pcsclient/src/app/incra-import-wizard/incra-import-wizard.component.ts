@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, NgForm, FormControl } from '@angular/forms';
 import { IncraImportService } from '../shared/services/incra-import.service';
 import { HttpEventType, HttpResponse, HttpEvent } from '@angular/common/http';
-import {formatDate } from '@angular/common';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-incra-import-wizard',
   templateUrl: './incra-import-wizard.component.html',
@@ -15,7 +14,9 @@ export class IncraImportWizardComponent {
   CONTINUOUS_SCHEDULE_NAME:string='INCRA CONTINUOUS FOR PCS';
   DATED_SCHEDULE_NAME:string='INCRA DATED FOR PCS';
   currentDate:Date;
-  scheduleNames:string;
+  scheduleName:string;
+  formSubmitted:boolean=false;
+
 
   selectedFiles:FileList;
   currentFileUpload:File;
@@ -29,68 +30,57 @@ export class IncraImportWizardComponent {
   
   progress :{percentage:number}={percentage:0};
 
-  confirmationForm:FormGroup;
-
   public incraForm: FormGroup;
-  constructor(fb: FormBuilder,private incraImport:IncraImportService) {
+  constructor(fb: FormBuilder,private incraImport:IncraImportService,private router:Router) {
     this.incraForm = fb.group({
       incraFile: null,
       scheduleName: 'INCRA CONT/DATED FOR PCS',
       group: 'INCRA IMPORT',
+      job:this.JOB,
+      parameter:this.parameterGot,
+      remarks:'',
+      scheduleDate:''
     });
-    this.confirmationForm=new FormGroup({
-      'incraFile':new FormControl(' '),
-      'job':new FormControl(' '),
-      'schedule':new FormControl(' '),
-      'parameter':new FormControl(' '),
-      'remarks':new FormControl(''),
-      'scheduleDate':new FormControl('')
-    })
-
     this.currentDate=new Date();
   }
 
   onFileChange(event) {
     this.selectedFiles=event.target.files;
-  }
-
-  getParameters(){
-    console.log(this.incraForm.value);
     this.currentFileUpload=this.selectedFiles.item(0);
+    console.log(this.currentFileUpload)
     this.incraImport.getParameter(this.currentFileUpload).subscribe(
       (response:any)=>{
         this.parameterGot=response.result.parameter;
+        console.log(this.parameterGot);
         this.fileType=response.result.fileType;
         if(this.fileType=="C"){
-          this.scheduleNames=this.CONTINUOUS_SCHEDULE_NAME;
+          this.scheduleName=this.CONTINUOUS_SCHEDULE_NAME;
         }else{
-         this.scheduleNames=this.DATED_SCHEDULE_NAME;
+         this.scheduleName=this.DATED_SCHEDULE_NAME;
         }
-        //setting the default value
-        this.confirmationForm.setValue({
-          'incraFile':'',
-          'schedule':this.scheduleNames,
-          'parameter':this.parameterGot,
-          'job':this.JOB,
-          'remarks':' ',
-          'scheduleDate':formatDate(new Date(), 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530')
-        });
-        this.showOtherPartOfForm=true;
       }
     )
   }
 
+  getParameters(){
+    this.showOtherPartOfForm=true;
+  }
+
   submitConfirmationForm(){
-    console.log(this.confirmationForm);
+    console.log(this.incraForm.value);
   }
 
   upload(){
+    this.formSubmitted=true;
     this.progress.percentage=0;
     this.currentFileUpload=this.selectedFiles.item(0);
-    this.incraImport.doIncraImport(this.currentFileUpload).subscribe(
+    this.incraImport.doIncraImport(this.currentFileUpload,this.incraForm.value).subscribe(
       (event)=>{
         if(event.type===HttpEventType.UploadProgress){
           this.progress.percentage=Math.round(100*event.loaded/event.total);
+          if(this.progress.percentage==100){
+            console.log("file uploaded successfully");
+          }
         }else if(event instanceof HttpResponse){
           this.updatedFileSuccess=true;
           this.updatedFileFailure=false;
@@ -98,6 +88,6 @@ export class IncraImportWizardComponent {
           this.updatedFileFailure=true;
           this.updatedFileSuccess=false;
         }
-      })
+      });
   }
 }

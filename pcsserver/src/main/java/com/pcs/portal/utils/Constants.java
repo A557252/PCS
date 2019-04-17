@@ -3,6 +3,8 @@ package com.pcs.portal.utils;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.apache.tomcat.jni.File;
+
 
 public interface Constants {
 	public static String SUCCESS_STATUS = "{\"Status\" : true ,";
@@ -22,6 +24,13 @@ public interface Constants {
     public static String GET_FAILURE = "\"Message\" : \"Fetching Failed\"}";
     
     //initially trying with local
-	public static final Path ROOTFILE_LOCATION=Paths.get("C:\\klm-poc\\dataDummy");
+	public static final Path ROOTFILE_LOCATION=Paths.get(new java.io.File("").getAbsolutePath()+"\\temp_upload");
+	
+	//FTP DETAILS
+	public static final String USER_NAME="pcsuser";
+	public static final String PASSWORD="Atos123";
+	public static final int PORT=22;
+	public static final String HOST="nlsivm758.sdmc.ao-srv.com";
+	public static final String HOME_LOCATION_KLM_PCS="/home/fsdspcsa/pcs/klm";
 	
 }

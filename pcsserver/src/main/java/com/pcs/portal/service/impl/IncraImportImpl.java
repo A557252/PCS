@@ -5,6 +5,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +17,7 @@ import com.pcs.portal.dao.FSD_Batch_SchedulingDao;
 import com.pcs.portal.model.FileResponse;
 import com.pcs.portal.model.FsdBatchScheduling;
 import com.pcs.portal.service.IncraImport;
+import com.pcs.portal.utils.FTPUtility;
 
 @Service
 public class IncraImportImpl implements IncraImport {
@@ -24,8 +28,10 @@ public class IncraImportImpl implements IncraImport {
 	@Override
 	public boolean StoreIncraFile(MultipartFile incraFile) {
 		try {
-			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()));
-		} catch (IOException e) {
+//			System.out.println("insize incra file");
+//			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()));
+		new FTPUtility(incraFile);
+		} catch (Exception e) {
 			return false;
 		}
 		return true;
@@ -57,9 +63,38 @@ public class IncraImportImpl implements IncraImport {
 			
 			return new FileResponse(parameters, fileType);
 			
-		} catch (IOException e) {}
-		return new FileResponse("error", "");
+		} catch (IOException e) {
+			return new FileResponse("error", "");
+		}
 	}
+
+	@Override
+	public boolean saveIntoBatchScheduling(String name,String parameters,String remarks) {
+		FsdBatchScheduling fsd=new FsdBatchScheduling();
+		fsd.setId(fsdBatchSchedulingdao.getNextValue());
+		fsd.setName(name);
+		fsd.setParameters(parameters);
+		fsd.setRemarks(remarks);
+		fsd.setSchedule_date(new Date());
+		fsd.setDate_created(new Date());
+		fsd.setDate_modified(new Date());
+		fsd.setUser_created("pcs_o");
+		fsd.setUser_modified("pcs_o");
+		fsdBatchSchedulingdao.save(fsd);
+		return true;
+	}
+
+//	@Override
+//	public boolean StoreIncraFileTemp(MultipartFile incraFile) {
+//		System.out.println("inside incra file");
+//		try {
+//			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()+""));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return false;
+//	}
 
 	
 }

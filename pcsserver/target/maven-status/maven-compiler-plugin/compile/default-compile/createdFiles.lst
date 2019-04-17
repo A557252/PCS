@@ -11,8 +11,8 @@ com\pcs\portal\config\ExceptionAdvice.class
 com\pcs\portal\model\PcsBatchScheduling.class
 com\pcs\portal\utils\Constants.class
 com\pcs\portal\model\AuthToken.class
-com\pcs\portal\config\FTPIntegrationConfig.class
 com\pcs\portal\controller\BatchSchedulingController.class
+com\pcs\portal\utils\FTPUtility.class
 com\pcs\portal\controller\FileController.class
 com\pcs\portal\model\FileResponse.class
 com\pcs\portal\dao\UserDao.class

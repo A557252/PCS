@@ -10,9 +10,12 @@ export class IncraImportService {
 
   constructor(private httpClient:HttpClient,private tokenManagement:TokenmanagemnetService) { }
 
-  doIncraImport(file:File):Observable<HttpEvent<{}>>{
+  doIncraImport(file:File,value):Observable<HttpEvent<{}>>{
     let formData:FormData=new FormData();
     formData.append('incraFile',file);
+    formData.append('schedule',value.scheduleName);
+    formData.append('remarks',value.remarks);
+    formData.append('job',value.job);
 
     let token=this.getToken();
     const header=new HttpHeaders({
@@ -28,14 +31,13 @@ export class IncraImportService {
   }
 
   getParameter(file:File){
-    let formData:FormData=new FormData();
-    formData.append('incraFile',file);
-
+    let formDatas:FormData=new FormData();
+    formDatas.append('incraFile',file);
     let token=this.getToken();
     const header=new HttpHeaders({
       'Authorization':token
     });
-    return this.httpClient.post('http://localhost:9000/wizards/incraupload',formData,{headers:header});
+    return this.httpClient.post('http://localhost:9000/wizards/incraGetParameters',formDatas,{headers:header});
   }
 
   getToken(){

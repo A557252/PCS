@@ -22,8 +22,30 @@ public class FileController {
 	IncraImport incraImport;
 
 	@PostMapping("/incraupload")
-	public ApiResponse<Void> uploadFile(@RequestParam("incraFile") MultipartFile incrafile){
+	public ApiResponse<Void> uploadFile(@RequestParam("incraFile") MultipartFile incrafile,
+			@RequestParam("remarks") String remarks,
+			@RequestParam("schedule") String schedule,
+			@RequestParam("job") String job
+			){
 		if(incrafile.getOriginalFilename().substring(incrafile.getOriginalFilename().lastIndexOf('.')+1).contentEquals("dat")) {
+			boolean result=incraImport.StoreIncraFile(incrafile);
+			if(result) {
+			FileResponse fileParameters=incraImport.makeEntryDb(incrafile);
+			System.out.println(fileParameters.getParameter());
+			incraImport.saveIntoBatchScheduling(job, fileParameters.getParameter(), remarks);
+			return new ApiResponse<>(HttpStatus.OK.value(),"parameter",fileParameters);
+		}
+		else {
+			return new ApiResponse<>(401, "failure",new String("file format not supported"));
+		}
+			}else {
+				return new ApiResponse<>(401, "failure",new String("cannot store file"));
+			}
+	}
+	
+	@PostMapping("/incraGetParameters")
+	public ApiResponse<Void> getParameter(@RequestParam("incraFile") MultipartFile incrafile){
+			if(incrafile.getOriginalFilename().substring(incrafile.getOriginalFilename().lastIndexOf('.')+1).contentEquals("dat")) {
 			FileResponse fileParameters=incraImport.makeEntryDb(incrafile);
 			return new ApiResponse<>(HttpStatus.OK.value(),"parameter",fileParameters);
 		}

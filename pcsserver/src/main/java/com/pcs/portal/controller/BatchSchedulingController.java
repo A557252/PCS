@@ -24,22 +24,14 @@ public class BatchSchedulingController {
 	
 	@GetMapping("/fsdschedule")
 	public ApiResponse<Void> getAllFsdSchedule(){
-		Iterable<FsdBatchScheduling> allFsdBatchSchedule= batchScheduling.getAllFsdBatchSchedulingData();
-		ArrayList<FsdBatchScheduling> all=new ArrayList<>();
-		for(FsdBatchScheduling d:allFsdBatchSchedule) {
-			all.add(d);
-		}
-		return new ApiResponse<>(HttpStatus.OK.value(),"success",all);
+		List<FsdBatchScheduling> allFsdBatchSchedule= batchScheduling.getAllFsdBatchSchedulingData();
+		return new ApiResponse<>(HttpStatus.OK.value(),"success",allFsdBatchSchedule);
 	}
 	
 	@GetMapping("/pcsschedule")
 	public ApiResponse<Void> getAllPcsScedule(){
-		Iterable<PcsBatchScheduling> allPcsBatchSchedule= batchScheduling.getAllPcsBatchSchedulingData();
-		ArrayList<PcsBatchScheduling> all=new ArrayList<>();
-		for(PcsBatchScheduling d:allPcsBatchSchedule) {
-			all.add(d);
-		}
-		return new ApiResponse<>(HttpStatus.OK.value(),"success",all);
+		List<PcsBatchScheduling> allPcsBatchSchedule= batchScheduling.getAllPcsBatchSchedulingData();
+		return new ApiResponse<>(HttpStatus.OK.value(),"success",allPcsBatchSchedule);
 	}
 	
 }

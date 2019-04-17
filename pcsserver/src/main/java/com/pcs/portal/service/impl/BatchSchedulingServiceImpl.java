@@ -25,19 +25,13 @@ public class BatchSchedulingServiceImpl implements BatchSchedulingService {
 	private PcsBatchSchedulingDao pcsBatchSchedulingDao;
 	
 	@Override
-	public Iterable<FsdBatchScheduling> getAllFsdBatchSchedulingData() {
-		Iterable<FsdBatchScheduling> fsd=fsdBatchSchedulingDao.findAll();
-		ArrayList<FsdBatchScheduling> all=new ArrayList<>();
-		for(FsdBatchScheduling d:fsd) {
-			all.add(d);
-		}
-		
-		return fsdBatchSchedulingDao.findAll();
+	public List<FsdBatchScheduling> getAllFsdBatchSchedulingData() {
+		return fsdBatchSchedulingDao.findAllFsdData();
 	}
 
 	@Override
-	public Iterable<PcsBatchScheduling> getAllPcsBatchSchedulingData() {
-		return pcsBatchSchedulingDao.findAll();
+	public List<PcsBatchScheduling> getAllPcsBatchSchedulingData() {
+		return pcsBatchSchedulingDao.findAllPcsData();
 	}
 
 }

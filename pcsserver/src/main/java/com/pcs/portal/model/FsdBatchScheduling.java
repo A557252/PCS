@@ -1,6 +1,6 @@
 package com.pcs.portal.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ public class FsdBatchScheduling {
 
 	@Id
 	@Column
-	private int id;
+	private long id;
 	@Column
 	private String name;
 	@Column
@@ -36,10 +36,10 @@ public class FsdBatchScheduling {
 	private String user_created;
 	@Column
 	private String user_modified;
-	public int getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getName() {
