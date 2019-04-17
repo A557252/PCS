@@ -21,6 +21,28 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+.custom-border{
+  border: none;
+  background-color: white;
+}
+.custom-border-input{
+  border: none;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  outline: none;
+  padding-left: 0px;
+}
+.custom-border-input:focus{
+  border: none;
+  background-color: white;
+  outline: none;
+  border-bottom: 3px solid #0097D8;
+  box-shadow: none;
+}
+
+.dropdown-item{
+  height: 15px;
+}
 
 .card {
     border: 0;

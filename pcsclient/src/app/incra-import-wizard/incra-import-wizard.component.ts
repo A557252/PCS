@@ -47,21 +47,6 @@ export class IncraImportWizardComponent {
 
   onFileChange(event) {
     this.selectedFiles=event.target.files;
-    // this.currentFileUpload=this.selectedFiles.item(0);
-    // console.log(this.currentFileUpload)
-    // this.incraImport.getParameter(this.currentFileUpload).subscribe(
-    //   (response:any)=>{
-    //     this.parameterGot=response.result.parameter;
-    //     console.log(response);
-    //     console.log(this.parameterGot);
-    //     this.fileType=response.result.fileType;
-    //     if(this.fileType=="C"){
-    //       this.scheduleName=this.CONTINUOUS_SCHEDULE_NAME;
-    //     }else{
-    //      this.scheduleName=this.DATED_SCHEDULE_NAME;
-    //     }
-    //   }
-    // )
   }
 
   getParameters(){

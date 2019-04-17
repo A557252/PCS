@@ -12,7 +12,7 @@
             <div class="card-body">
               <div class="input-group" *ngIf="loggedInFail">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">
+                  <span class="input-group-text custom-border">
                     <i class="material-icons custom-error-tag">error</i>
                   </span>
                   <p class="custom-error-tag">
@@ -22,34 +22,34 @@
               </div>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">
+                  <span class="input-group-text custom-border">
                     <i class="material-icons">perm_identity</i>
                   </span>
                 </div>
-                <input type="text" class="form-control" placeholder="Username..." ngModel #username="ngModel"
+                <input type="text" class="form-control custom-border-input" placeholder="Username..." ngModel #username="ngModel"
                   name="username" required>
               </div>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">
+                  <span class="input-group-text custom-border">
                     <i class="material-icons">lock_outline</i>
                   </span>
                 </div>
-                <input type="password" class="form-control" placeholder="Password..." ngModel #password="ngModel"
+                <input type="password" class="form-control custom-border-input" placeholder="Password..." ngModel #password="ngModel"
                   name="password" required>
               </div>
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <span class="input-group-text">
+                  <span class="input-group-text custom-border">
                     <i class="material-icons">dns</i>
                   </span>
                 </div>
-                  <select class="browser-default custom-select" type="button"
+                  <select class="browser-default custom-select custom-border-input" type="button"
                     id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     [(ngModel)]="environmentValue" name="environment" #environment="ngModel" required>
                     Environment
-                    <option class="dropdown-item btn btn-secondary" value="Production">Production</option>
-                    <option class="dropdown-item btn btn-secondary" value="Acceptance">Acceptance</option>
+                    <option class="dropdown-item" value="Production">Production</option>
+                    <option class="dropdown-item" value="Acceptance">Acceptance</option>
                   </select>
               </div>
             </div>
