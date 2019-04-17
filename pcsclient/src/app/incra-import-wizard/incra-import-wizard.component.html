@@ -1,132 +1,44 @@
-<div class="container" style="margin-top: 114px;">
-  <div class="col-xs-6 col-md-offset-2">
-    <div *ngIf="currentFileUpload" class="progress">
-      <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar"
-        attr.aria-valuenow="{{progress.percentage}}" aria-valuemin="0" aria-valuemax="100"
-        [ngStyle]="{width:progress.percentage+'%'}">
-        {{progress.percentage}}%</div>
-    </div>
-    <div class="row ">
-      <mat-card class="mt-5 w-100">
-        <div class="import_export">
-          <mat-icon>import_export</mat-icon>
+<app-card-layout [cardContainerStyle]="'144px'" [cardIcon]="'import_export'">
+    <form class="example-form" [formGroup]="incraForm">
+      <div class="row">
+        <div class="col-3">
+          <label>INCRA Continues or Dated file</label>
         </div>
-        <form class="example-form" [formGroup]="incraForm">
-          <div class="row"  *ngIf="!showOtherPartOfForm">
-            <div class="col-3">
-              <label>INCRA Continues or Dated file</label>
+        <div class="col-4">
+          <mat-card class="choose_file">
+            <div class="ml-2">
+              <input type="file" id="incraFile" name="myFile" class="text-white" (change)="onFileChange($event);">
             </div>
-            <div class="col-4">
-              <mat-card class="choose_file">
-                <div class="ml-2">
-                  <input type="file" id="incraFile" name="myFile" class="text-white" (change)="onFileChange($event);">
-                </div>
-              </mat-card>
-            </div>
-          </div>
-
-          <div class="row" *ngIf="!showOtherPartOfForm">
-            <div class="col-3">
-              <label>Schedule Name</label>
-            </div>
-            <div class="col">
-              <mat-form-field class="w-100">
-                <input matInput formControlName="scheduleName" readonly>
-              </mat-form-field>
-            </div>
-          </div>
-          <!-- <img src="../../../../assets/img/spinner.gif" height="100" width="100" *ngIf="!showOtherPartOfForm"> -->
-
-          <div class="row" *ngIf="!showOtherPartOfForm">
-            <div class="col-3">
-              <label>Group</label>
-            </div>
-            <div class="col">
-              <mat-form-field class="w-100">
-                <input matInput formControlName="group" readonly>
-              </mat-form-field>
-            </div>
-          </div>
-
-          <div class="row" *ngIf="showOtherPartOfForm">
-            <label class="col-sm-2 col-form-label">Job</label>
-            <div class="col-sm-4">
-              <div class="form-group bmd-form-group is-filled">
-                <input type="text" formControlName="job" class="form-control" readonly>
-              </div>
-            </div>
-            <!-- </div>
-          <div class="row"> -->
-            <label class="col-sm-2 col-form-label">Schedule</label>
-            <div class="col-sm-4">
-              <div class="form-group bmd-form-group is-filled">
-                <input type="text" formControlName="scheduleName" class="form-control" readonly>
-              </div>
-            </div>
-          </div>
-          <div class="row" *ngIf="showOtherPartOfForm">
-            <label class="col-sm-2 col-form-label">Parameters</label>
-            <div class="col-sm-10">
-              <div class="form-group bmd-form-group is-filled">
-                <p class="form-control" *ngIf="showOtherPartOfForm" readonly>{{parameterGot}}</p>
-              </div>
-            </div>
-          </div>
-          <div class="row" *ngIf="showOtherPartOfForm">
-            <label class="col-sm-2 col-form-label">Remarks</label>
-            <div class="col-sm-10">
-              <div class="form-group bmd-form-group is-filled">
-                <textarea rows="1" formControlName="remarks" class="form-control" placeholder="enter remark here..."></textarea>
-              </div>
-            </div>
-          </div>
-          <div class="row" *ngIf="showOtherPartOfForm">
-            <label class="col-sm-2 col-form-label">Schedule Date</label>
-            <div class="col-sm-2">
-              <div class="form-group bmd-form-group is-filled">
-                <p class="form-control" *ngIf="showOtherPartOfForm">{{currentDate | date:'d/M/yy h:mm'}}</p>
-              </div>
-            </div>
-            <!-- </div>
-          <div class="row"> -->
-            <label class="col-sm-2 col-form-label">Start Date</label>
-            <div class="col-sm-2">
-              <div class="form-group bmd-form-group is-filled">
-                <input type="text" class="form-control datetimepicker" readonly>
-              </div>
-            </div>
-            <!-- </div>
-                  <div class="row"> -->
-            <label class="col-sm-2 col-form-label">End Date</label>
-            <div class="col-sm-2">
-              <div class="form-group bmd-form-group is-filled">
-                <input type="text" class="form-control datetimepicker" readonly>
-              </div>
-            </div>
-          </div>
-
-
-
-
-          <div class="flex-row d-flex" *ngIf="!showOtherPartOfForm">
-            <div>
-              <button mat-raised-button class="button_style" (click)="getParameters()">IMPORT</button>
-            </div>
-            <div class="ml-auto">
-              <button mat-raised-button class="button_style">CANCEL</button>
-            </div>
-          </div>
-
-          <div class="flex-row d-flex" *ngIf="showOtherPartOfForm">
-            <div>
-              <button mat-raised-button class="button_style" (click)="upload()" [disabled]="formSubmitted">OK</button>
-            </div>
-            <div class="ml-auto">
-              <button mat-raised-button class="button_style" [disabled]="formSubmitted">CANCEL</button>
-            </div>
-          </div>
-        </form>
-      </mat-card>
-    </div>
-  </div>
-</div>
+          </mat-card>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <label>Schedule Name</label>
+        </div>
+        <div class="col">
+          <mat-form-field class="w-100">
+            <input matInput formControlName="scheduleName">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <label>Group</label>
+        </div>
+        <div class="col">
+          <mat-form-field class="w-100">
+            <input matInput formControlName="group">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="flex-row d-flex">
+        <div>
+          <button mat-raised-button class="button_style" (click)="upload()">IMPORT</button>
+        </div>
+        <div class="ml-auto">
+          <button mat-raised-button class="button_style">CANCEL</button>
+        </div>
+      </div>
+    </form>
+  </app-card-layout>

@@ -16,6 +16,7 @@ import { SideMenuComponent } from './side-menu/side-menu.component';
 import { ExportsModule } from './exports/exports.module';
 import { MatProgressBarModule, MatDialogModule } from '@angular/material';
 import { NotImplementedComponent } from './not-implemented/not-implemented.component';
+import { IncraImpotWizardSubmitComponent } from './incra-import-wizard/incra-impot-wizard-submit/incra-impot-wizard-submit.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { NotImplementedComponent } from './not-implemented/not-implemented.compo
     PagenotfoundComponent,
     IncraImportWizardComponent,
     SideMenuComponent,
-    NotImplementedComponent
+    NotImplementedComponent,
+    IncraImpotWizardSubmitComponent
   ],
   imports: [
     BrowserModule,

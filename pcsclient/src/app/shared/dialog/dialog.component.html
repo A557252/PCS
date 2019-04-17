@@ -1,0 +1,15 @@
+<h1 mat-dialog-title class="d-flex mb-0">
+        <button mat-icon-button class="ml-auto" mat-dialog-close>
+            <mat-icon aria-label="Example icon-button with a heart icon">clear</mat-icon>
+          </button>
+    </h1>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content class="pb-5">
+      <span>
+        {{data.message}}
+      </span>
+    </div>
+    <mat-divider></mat-divider>
+    <div mat-dialog-actions class="d-flex justify-content-center py-4">
+      <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
+    </div>
