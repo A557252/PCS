@@ -7,6 +7,7 @@ public class FileResponse {
 	public String getParameter() {
 		return parameter;
 	}
+	public String id;
 	public void setParameter(String parameter) {
 		this.parameter = parameter;
 	}
@@ -21,5 +22,10 @@ public class FileResponse {
 		this.parameter = parameter;
 		this.fileType = fileType;
 	}
-	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 }

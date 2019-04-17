@@ -24,13 +24,13 @@ public class BatchSchedulingController {
 	
 	@GetMapping("/fsdschedule")
 	public ApiResponse<Void> getAllFsdSchedule(){
-		List<FsdBatchScheduling> allFsdBatchSchedule= batchScheduling.getAllFsdBatchSchedulingData();
+		List<FsdBatchScheduling> allFsdBatchSchedule= batchScheduling.getAllFsdBatchSchedulingData(10,20);
 		return new ApiResponse<>(HttpStatus.OK.value(),"success",allFsdBatchSchedule);
 	}
 	
 	@GetMapping("/pcsschedule")
 	public ApiResponse<Void> getAllPcsScedule(){
-		List<PcsBatchScheduling> allPcsBatchSchedule= batchScheduling.getAllPcsBatchSchedulingData();
+		List<PcsBatchScheduling> allPcsBatchSchedule= batchScheduling.getAllPcsBatchSchedulingData(10,20);
 		return new ApiResponse<>(HttpStatus.OK.value(),"success",allPcsBatchSchedule);
 	}
 	

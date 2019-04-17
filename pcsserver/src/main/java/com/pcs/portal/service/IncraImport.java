@@ -6,7 +6,8 @@ import com.pcs.portal.model.FileResponse;
 
 public interface IncraImport {
 
-	public boolean StoreIncraFile(MultipartFile incraFile);
+	public boolean StoreIncraFile(MultipartFile incraFile,String id);
 	public FileResponse makeEntryDb(MultipartFile incraFile);
 	public boolean saveIntoBatchScheduling(String name,String parameters,String remarks);
+	public String StoreIncraFileTemp(MultipartFile incraFile);
 }

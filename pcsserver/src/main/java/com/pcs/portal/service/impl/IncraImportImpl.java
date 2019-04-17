@@ -1,6 +1,7 @@
 package com.pcs.portal.service.impl;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -8,6 +9,9 @@ import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,7 @@ import com.pcs.portal.dao.FSD_Batch_SchedulingDao;
 import com.pcs.portal.model.FileResponse;
 import com.pcs.portal.model.FsdBatchScheduling;
 import com.pcs.portal.service.IncraImport;
+import com.pcs.portal.utils.Constants;
 import com.pcs.portal.utils.FTPUtility;
 
 @Service
@@ -25,12 +30,16 @@ public class IncraImportImpl implements IncraImport {
 	@Autowired
 	private FSD_Batch_SchedulingDao fsdBatchSchedulingdao;
 	
+	@Transactional
 	@Override
-	public boolean StoreIncraFile(MultipartFile incraFile) {
-		try {
-//			System.out.println("insize incra file");
-//			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()));
-		new FTPUtility(incraFile);
+	public boolean StoreIncraFile(MultipartFile incraFile,String id) {
+		try {		
+		new FTPUtility(incraFile,id);
+		System.out.println("deleting temp file..."+incraFile.getOriginalFilename()+"&"+id);
+	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+incraFile.getOriginalFilename()+"&"+id);
+		if(f1.delete()) {
+			return true;
+		}
 		} catch (Exception e) {
 			return false;
 		}
@@ -84,17 +93,18 @@ public class IncraImportImpl implements IncraImport {
 		return true;
 	}
 
-//	@Override
-//	public boolean StoreIncraFileTemp(MultipartFile incraFile) {
-//		System.out.println("inside incra file");
-//		try {
-//			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()+""));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return false;
-//	}
+	@Override
+	public String StoreIncraFileTemp(MultipartFile incraFile) {
+		System.out.println("inside incra file");
+		Random rand = new Random();
+		int n = rand.nextInt(60000)+10000;
+		try {
+			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()+"&"+n));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return Integer.toString(n);
+	}
 
 	
 }

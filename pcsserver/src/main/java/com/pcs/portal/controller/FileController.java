@@ -1,5 +1,7 @@
 package com.pcs.portal.controller;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,14 +23,16 @@ public class FileController {
 	@Autowired
 	IncraImport incraImport;
 
+	@Transactional
 	@PostMapping("/incraupload")
 	public ApiResponse<Void> uploadFile(@RequestParam("incraFile") MultipartFile incrafile,
 			@RequestParam("remarks") String remarks,
 			@RequestParam("schedule") String schedule,
-			@RequestParam("job") String job
+			@RequestParam("job") String job,
+			@RequestParam("idFetc") String id
 			){
 		if(incrafile.getOriginalFilename().substring(incrafile.getOriginalFilename().lastIndexOf('.')+1).contentEquals("dat")) {
-			boolean result=incraImport.StoreIncraFile(incrafile);
+			boolean result=incraImport.StoreIncraFile(incrafile,id);
 			if(result) {
 			FileResponse fileParameters=incraImport.makeEntryDb(incrafile);
 			System.out.println(fileParameters.getParameter());
@@ -43,10 +47,12 @@ public class FileController {
 			}
 	}
 	
+	@Transactional
 	@PostMapping("/incraGetParameters")
 	public ApiResponse<Void> getParameter(@RequestParam("incraFile") MultipartFile incrafile){
 			if(incrafile.getOriginalFilename().substring(incrafile.getOriginalFilename().lastIndexOf('.')+1).contentEquals("dat")) {
 			FileResponse fileParameters=incraImport.makeEntryDb(incrafile);
+			fileParameters.setId(incraImport.StoreIncraFileTemp(incrafile));
 			return new ApiResponse<>(HttpStatus.OK.value(),"parameter",fileParameters);
 		}
 		else {

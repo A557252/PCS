@@ -16,6 +16,7 @@ export class IncraImportWizardComponent {
   currentDate:Date;
   scheduleName:string;
   formSubmitted:boolean=false;
+  idResponse:string="";
 
 
   selectedFiles:FileList;
@@ -46,11 +47,33 @@ export class IncraImportWizardComponent {
 
   onFileChange(event) {
     this.selectedFiles=event.target.files;
+    // this.currentFileUpload=this.selectedFiles.item(0);
+    // console.log(this.currentFileUpload)
+    // this.incraImport.getParameter(this.currentFileUpload).subscribe(
+    //   (response:any)=>{
+    //     this.parameterGot=response.result.parameter;
+    //     console.log(response);
+    //     console.log(this.parameterGot);
+    //     this.fileType=response.result.fileType;
+    //     if(this.fileType=="C"){
+    //       this.scheduleName=this.CONTINUOUS_SCHEDULE_NAME;
+    //     }else{
+    //      this.scheduleName=this.DATED_SCHEDULE_NAME;
+    //     }
+    //   }
+    // )
+  }
+
+  getParameters(){
+    this.showOtherPartOfForm=true;
+
     this.currentFileUpload=this.selectedFiles.item(0);
     console.log(this.currentFileUpload)
     this.incraImport.getParameter(this.currentFileUpload).subscribe(
       (response:any)=>{
         this.parameterGot=response.result.parameter;
+        this.idResponse=response.result.id;
+        console.log(response);
         console.log(this.parameterGot);
         this.fileType=response.result.fileType;
         if(this.fileType=="C"){
@@ -60,10 +83,7 @@ export class IncraImportWizardComponent {
         }
       }
     )
-  }
 
-  getParameters(){
-    this.showOtherPartOfForm=true;
   }
 
   submitConfirmationForm(){
@@ -74,7 +94,7 @@ export class IncraImportWizardComponent {
     this.formSubmitted=true;
     this.progress.percentage=0;
     this.currentFileUpload=this.selectedFiles.item(0);
-    this.incraImport.doIncraImport(this.currentFileUpload,this.incraForm.value).subscribe(
+    this.incraImport.doIncraImport(this.currentFileUpload,this.incraForm.value,this.idResponse).subscribe(
       (event)=>{
         if(event.type===HttpEventType.UploadProgress){
           this.progress.percentage=Math.round(100*event.loaded/event.total);

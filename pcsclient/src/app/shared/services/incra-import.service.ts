@@ -10,13 +10,14 @@ export class IncraImportService {
 
   constructor(private httpClient:HttpClient,private tokenManagement:TokenmanagemnetService) { }
 
-  doIncraImport(file:File,value):Observable<HttpEvent<{}>>{
+  doIncraImport(file:File,value,id:string):Observable<HttpEvent<{}>>{
     let formData:FormData=new FormData();
     formData.append('incraFile',file);
     formData.append('schedule',value.scheduleName);
     formData.append('remarks',value.remarks);
     formData.append('job',value.job);
-
+    formData.append('idFetc',id);
+    
     let token=this.getToken();
     const header=new HttpHeaders({
       'Authorization':token

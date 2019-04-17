@@ -1,9 +1,5 @@
 package com.pcs.portal.service.impl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +21,13 @@ public class BatchSchedulingServiceImpl implements BatchSchedulingService {
 	private PcsBatchSchedulingDao pcsBatchSchedulingDao;
 	
 	@Override
-	public List<FsdBatchScheduling> getAllFsdBatchSchedulingData() {
-		return fsdBatchSchedulingDao.findAllFsdData();
+	public List<FsdBatchScheduling> getAllFsdBatchSchedulingData(int from,int to) {
+		return fsdBatchSchedulingDao.findAllFsdData(from,to);
 	}
 
 	@Override
-	public List<PcsBatchScheduling> getAllPcsBatchSchedulingData() {
-		return pcsBatchSchedulingDao.findAllPcsData();
+	public List<PcsBatchScheduling> getAllPcsBatchSchedulingData(int from,int to) {
+		return pcsBatchSchedulingDao.findAllPcsData(from,to);
 	}
 
 }
