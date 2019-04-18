@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { TokenmanagemnetService } from '../shared/services/tokenmanagemnet.service';
 import { Router } from '@angular/router';
 
@@ -11,19 +10,19 @@ import { Router } from '@angular/router';
 export class SideMenuComponent implements OnInit {
   sideNavList: any = [
     {
-      title: 'Maintain', icon: 'settings',
+      title: 'Maintain', icon: 'settings', link:'umimplemented'
     },
-    { title: 'Flight Schedule', icon: 'access_time',  },
+    { title: 'Flight Schedule', icon: 'access_time', link:'umimplemented' },
     {
       title: 'Wizards', icon: 'W',
       subMenu: [
         { title: 'Snapshot/Compose Schedule Wizard', icon: 'SW', link: 'exports/batchscheduling' },
-        { title: 'Interface Wizard', icon: 'IW', link: './wizards/submitImportIncraWizard'  },
+        { title: 'Interface Wizard', icon: 'IW', link: 'umimplemented'  },
         { title: 'Incra Import Wizard', icon: 'IIW', link: './wizards/incrawizard', }
       ]
     },
-    { title: 'Export', icon: 'import_export' },
-    { title: 'Checks', icon: 'check_box' }
+    { title: 'Export', icon: 'import_export' ,link:'umimplemented'},
+    { title: 'Checks', icon: 'check_box',link:'umimplemented' }
   ];
   constructor(private tokenMangement:TokenmanagemnetService,private router:Router) { }
 

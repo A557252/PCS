@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -23,6 +24,7 @@ import com.pcs.portal.model.FsdBatchScheduling;
 import com.pcs.portal.service.IncraImport;
 import com.pcs.portal.utils.Constants;
 import com.pcs.portal.utils.FTPUtility;
+import com.sun.jmx.snmp.Timestamp;
 
 @Service
 public class IncraImportImpl implements IncraImport {
@@ -32,11 +34,11 @@ public class IncraImportImpl implements IncraImport {
 	
 	@Transactional
 	@Override
-	public boolean StoreIncraFile(MultipartFile incraFile,String id) {
+	public boolean StoreIncraFile(String incraFile,String id) {
 		try {		
 		new FTPUtility(incraFile,id);
-		System.out.println("deleting temp file..."+incraFile.getOriginalFilename()+"&"+id);
-	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+incraFile.getOriginalFilename()+"&"+id);
+		System.out.println("deleting temp file..."+incraFile+"&"+id);
+	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+incraFile+"&"+id);
 		if(f1.delete()) {
 			return true;
 		}
@@ -84,9 +86,9 @@ public class IncraImportImpl implements IncraImport {
 		fsd.setName(name);
 		fsd.setParameters(parameters);
 		fsd.setRemarks(remarks);
-		fsd.setSchedule_date(new Date());
-		fsd.setDate_created(new Date());
-		fsd.setDate_modified(new Date());
+		fsd.setSchedule_date(new Date(System.currentTimeMillis()-11*60*60*1000));
+		fsd.setDate_created(new Date(System.currentTimeMillis()-11*60*60*1000));
+		fsd.setDate_modified(new Date(System.currentTimeMillis()-11*60*60*1000));
 		fsd.setUser_created("pcs_o");
 		fsd.setUser_modified("pcs_o");
 		fsdBatchSchedulingdao.save(fsd);
@@ -95,15 +97,13 @@ public class IncraImportImpl implements IncraImport {
 
 	@Override
 	public String StoreIncraFileTemp(MultipartFile incraFile) {
-		System.out.println("inside incra file");
-		Random rand = new Random();
-		int n = rand.nextInt(60000)+10000;
+		long n = new Timestamp().getDateTime();
 		try {
 			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()+"&"+n));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return Integer.toString(n);
+		return Long.toString(n);
 	}
 
 	

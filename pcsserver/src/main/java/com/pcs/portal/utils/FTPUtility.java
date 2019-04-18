@@ -14,7 +14,7 @@ import com.jcraft.jsch.Session;
 public class FTPUtility {
 
 	JSch jsch ;
-	public FTPUtility(MultipartFile file,String id){	
+	public FTPUtility(String file,String id){	
 		try {
 		jsch = new JSch();
 	    System.out.println("Connection established.");
@@ -31,10 +31,10 @@ public class FTPUtility {
 	    channelSftp.cd(Constants.HOME_LOCATION_KLM_PCS);
 	    //converting multipart file to file
 	    //File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+file.getOriginalFilename());
-	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+file.getOriginalFilename()+"&"+id);
+	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+file+"&"+id);
 //	    file.transferTo(f1);
 //	    File f1=FTPUtility.multipartToFile(file);
-	    channelSftp.put(new FileInputStream(f1),file.getOriginalFilename());
+	    channelSftp.put(new FileInputStream(f1),file);
 	    channelSftp.exit();
 	    session.disconnect();
 		System.out.println("connection done");

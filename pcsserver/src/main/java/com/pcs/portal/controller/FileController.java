@@ -1,5 +1,7 @@
 package com.pcs.portal.controller;
 
+import java.io.File;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.pcs.portal.model.ApiResponse;
 import com.pcs.portal.model.FileResponse;
 import com.pcs.portal.service.IncraImport;
+import com.pcs.portal.utils.Constants;
 
 @CrossOrigin(origins="*")
 @RestController
@@ -25,19 +28,19 @@ public class FileController {
 
 	@Transactional
 	@PostMapping("/incraupload")
-	public ApiResponse<Void> uploadFile(@RequestParam("incraFile") MultipartFile incrafile,
+	public ApiResponse<Void> uploadFile(@RequestParam("incraFile") String incrafile,
 			@RequestParam("remarks") String remarks,
 			@RequestParam("schedule") String schedule,
 			@RequestParam("job") String job,
-			@RequestParam("idFetc") String id
+			@RequestParam("idFetc") String id,
+			@RequestParam("parameters") String parameters
 			){
-		if(incrafile.getOriginalFilename().substring(incrafile.getOriginalFilename().lastIndexOf('.')+1).contentEquals("dat")) {
+		System.out.println("came here inside incraupload");
+		if(incrafile.substring(incrafile.lastIndexOf('.')+1).contentEquals("dat")) {
 			boolean result=incraImport.StoreIncraFile(incrafile,id);
 			if(result) {
-			FileResponse fileParameters=incraImport.makeEntryDb(incrafile);
-			System.out.println(fileParameters.getParameter());
-			incraImport.saveIntoBatchScheduling(job, fileParameters.getParameter(), remarks);
-			return new ApiResponse<>(HttpStatus.OK.value(),"parameter",fileParameters);
+			incraImport.saveIntoBatchScheduling(job, parameters, remarks);
+			return new ApiResponse<>(HttpStatus.OK.value(),"parameter",parameters);
 		}
 		else {
 			return new ApiResponse<>(401, "failure",new String("file format not supported"));
@@ -59,4 +62,17 @@ public class FileController {
 			return new ApiResponse<>(401, "failure",new String("file format not supported"));
 		}
 	}
+	
+	@PostMapping("/deleteincra")
+	public ApiResponse<Void> deleteUploadedFile(@RequestParam("incraFile") String incrafile,@RequestParam("idFetc") String id){
+		System.out.println("deleting temp file..."+incrafile+"&"+id);
+	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+incrafile+"&"+id);
+		if(f1.delete()) 
+			return new ApiResponse<>(HttpStatus.OK.value(),"parameter","success");
+		else
+			return new ApiResponse<>(401, "failure","failure");
+		
+	}
+	
+	
 }

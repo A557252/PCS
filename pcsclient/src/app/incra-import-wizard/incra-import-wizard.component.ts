@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, NgForm, FormControl } from '@angular/forms';
 import { IncraImportService } from '../shared/services/incra-import.service';
 import { HttpEventType, HttpResponse, HttpEvent } from '@angular/common/http';
@@ -17,6 +17,7 @@ export class IncraImportWizardComponent {
   scheduleName:string;
   formSubmitted:boolean=false;
   idResponse:string="";
+  fileName:String="";
 
 
   selectedFiles:FileList;
@@ -31,27 +32,29 @@ export class IncraImportWizardComponent {
   
   progress :{percentage:number}={percentage:0};
 
+  @ViewChild('fileData') file:ElementRef;
+
+
   public incraForm: FormGroup;
   constructor(fb: FormBuilder,private incraImport:IncraImportService,private router:Router) {
     this.incraForm = fb.group({
       incraFile: null,
       scheduleName: 'INCRA CONT/DATED FOR PCS',
-      group: 'INCRA IMPORT',
-      job:this.JOB,
-      parameter:this.parameterGot,
-      remarks:'',
-      scheduleDate:''
+      group: 'INCRA IMPORT'
     });
     this.currentDate=new Date();
   }
 
   onFileChange(event) {
     this.selectedFiles=event.target.files;
+    this.fileName=this.selectedFiles.item(0).name;
+  }
+
+  deleteIncra(){
+  this.file.nativeElement.value=null;
   }
 
   getParameters(){
-    this.showOtherPartOfForm=true;
-
     this.currentFileUpload=this.selectedFiles.item(0);
     console.log(this.currentFileUpload)
     this.incraImport.getParameter(this.currentFileUpload).subscribe(
@@ -61,6 +64,7 @@ export class IncraImportWizardComponent {
         console.log(response);
         console.log(this.parameterGot);
         this.fileType=response.result.fileType;
+        this.showOtherPartOfForm=true;
         if(this.fileType=="C"){
           this.scheduleName=this.CONTINUOUS_SCHEDULE_NAME;
         }else{
@@ -69,30 +73,5 @@ export class IncraImportWizardComponent {
       }
     )
 
-  }
-
-  submitConfirmationForm(){
-    console.log(this.incraForm.value);
-  }
-
-  upload(){
-    this.formSubmitted=true;
-    this.progress.percentage=0;
-    this.currentFileUpload=this.selectedFiles.item(0);
-    this.incraImport.doIncraImport(this.currentFileUpload,this.incraForm.value,this.idResponse).subscribe(
-      (event)=>{
-        if(event.type===HttpEventType.UploadProgress){
-          this.progress.percentage=Math.round(100*event.loaded/event.total);
-          if(this.progress.percentage==100){
-            console.log("file uploaded successfully");
-          }
-        }else if(event instanceof HttpResponse){
-          this.updatedFileSuccess=true;
-          this.updatedFileFailure=false;
-        }else{
-          this.updatedFileFailure=true;
-          this.updatedFileSuccess=false;
-        }
-      });
   }
 }

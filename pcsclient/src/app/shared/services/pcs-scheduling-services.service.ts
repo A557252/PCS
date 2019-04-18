@@ -7,18 +7,31 @@ import { TokenmanagemnetService } from './tokenmanagemnet.service';
 })
 export class PcsSchedulingServicesService {
 
-  constructor(private HttpClient:HttpClient,private tokenManagement:TokenmanagemnetService) { }
+  constructor(private httpClient:HttpClient,private tokenManagement:TokenmanagemnetService) { }
 
   getAllPcsSchedulingData(){
     let token=this.getToken();
     const header=new HttpHeaders({
       'Authorization':token
     })
-    return this.HttpClient.get("http://localhost:9000/batchscheduling/pcsschedule",{headers:header});
+    this.httpClient.get("http://localhost:9000/batchscheduling/pcsschedule",{headers:header}).subscribe(
+      (response:any)=>{
+        return response.result;
+      }
+    )
   }
 
   getToken(){
     let token=this.tokenManagement.getToken();
     return "Bearer "+token;
   }
+
+  getPcsRowCount(){
+    let token=this.getToken();
+    const header=new HttpHeaders({
+      'Authorization':token
+    })
+    return this.httpClient.get("http://localhost:9000/batchscheduling/pcscount",{headers:header});
+  }
+
 }

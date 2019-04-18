@@ -10,4 +10,7 @@ public interface BatchSchedulingService {
 	List<FsdBatchScheduling> getAllFsdBatchSchedulingData(int from,int to);
 	List<PcsBatchScheduling> getAllPcsBatchSchedulingData(int from,int to);
 
+	int getAllFsdBatchSchedulingDataCount();
+	int getAllPcsBatchSchedulingDataCount();
+	
 }

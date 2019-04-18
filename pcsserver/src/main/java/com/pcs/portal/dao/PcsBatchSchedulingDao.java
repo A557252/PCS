@@ -26,4 +26,8 @@ public interface PcsBatchSchedulingDao extends JpaRepository<PcsBatchScheduling,
 			"       )\r\n" + 
 			" WHERE rn > :from",nativeQuery=true)
 	List<PcsBatchScheduling> findAllPcsData(@Param("from") int from,@Param("to") int to);
+	
+	@Query(value="select count(*) from pcs_batch_schedulings",nativeQuery=true)
+	int getPcsRowCount();
+	
 }

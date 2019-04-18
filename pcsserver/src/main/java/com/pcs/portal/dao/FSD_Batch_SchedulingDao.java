@@ -24,4 +24,7 @@ public interface FSD_Batch_SchedulingDao extends JpaRepository<FsdBatchSchedulin
 	@Query(value="SELECT FSD_BSG_SEQ1.nextval FROM dual",nativeQuery=true)
 	long getNextValue();
 	
+	@Query(value="select count(*) from fsd_batch_schedulings",nativeQuery=true)
+	int getFsdRowCount();
+	
 }

@@ -30,4 +30,14 @@ public class BatchSchedulingServiceImpl implements BatchSchedulingService {
 		return pcsBatchSchedulingDao.findAllPcsData(from,to);
 	}
 
+	@Override
+	public int getAllFsdBatchSchedulingDataCount() {
+		return fsdBatchSchedulingDao.getFsdRowCount();
+	}
+
+	@Override
+	public int getAllPcsBatchSchedulingDataCount() {
+		return pcsBatchSchedulingDao.getPcsRowCount();
+	}
+
 }

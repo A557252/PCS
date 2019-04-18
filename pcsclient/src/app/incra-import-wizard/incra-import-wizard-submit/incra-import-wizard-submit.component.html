@@ -1,75 +1,61 @@
 <app-card-layout [cardContainerStyle]="'90px'" [cardIcon]="'import_export'">
     <form class="example-form" [formGroup]="incraForm">
-      <div class="row">
-        <div class="col-2">
-          <label>Job</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
-          </mat-form-field>
-        </div>
-        <div class="col-2">
-          <label>Schedule</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-2">
-          <label>Parameters</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-2">
-          <label>Remarks</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="group">
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col">
-          <label>Schedule Date</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
-          </mat-form-field>
-        </div>
-        <div class="col">
-          <label>Start Date</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
-          </mat-form-field>
-        </div>
-        <div class="col-2">
-          <label>End Date</label>
-        </div>
-        <div class="col">
-          <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
-          </mat-form-field>
-        </div>
-      </div>
+        <div class="row">
+            <label class="col-sm-2 col-form-label text-right">Job</label>
+            <div class="col-sm-4">
+                <div class="form-group bmd-form-group is-filled">
+                <input type="text" class="form-control custom-border-input" formControlName="job" disabled>
+                </div>
+            </div>
+            <label class="col-sm-2 col-form-label text-right">Schedule</label>
+            <div class="col-sm-4">
+                <div class="form-group bmd-form-group is-filled">
+                <input type="text" class="form-control custom-border-input" formControlName="schedule" disabled>
+                </div>
+            </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label text-right">Parameters</label>
+                <div class="col-sm-10">
+                    <div class="form-group bmd-form-group is-filled">
+                    <input type="text" class="form-control custom-border-input" formControlName="parameters" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label text-right">Remarks</label>
+                <div class="col-sm-10">
+                    <div class="form-group bmd-form-group is-filled">
+                    <textarea rows="1" type="text" class="form-control custom-border-input" formControlName="remarks"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-sm-2 col-form-label text-right text-right">Schedule Date</label>
+                <div class="col-sm-2">
+                    <div class="form-group bmd-form-group is-filled">
+                    <input type="text" class="form-control custom-border-input" formControlName="scheduleDate">
+                </div>
+            </div>
+            <label class="col-sm-2 col-form-label text-right">Start Date</label>
+            <div class="col-sm-2">
+                <div class="form-group bmd-form-group is-filled">
+                <input type="text" class="form-control custom-border-input" disabled>
+                </div>
+            </div>
+            <label class="col-sm-2 col-form-label text-right">End Date</label>
+            <div class="col-sm-2">
+                <div class="form-group bmd-form-group is-filled">
+                <input type="text" class="form-control custom-border-input" disabled>
+                </div>
+            </div>
+            </div>
       <div class="flex-row d-flex">
         <div>
-          <button mat-raised-button (click)="onClicked()" class="button_style">OK</button>
+          <button mat-raised-button (click)="upload()" class="button_style">OK</button>
         </div>
         <div class="ml-auto">
-          <button mat-raised-button class="button_style ">CANCEL</button>
+          <button mat-raised-button class="button_style" (click)="deleteIncra()">CANCEL</button>
         </div>
       </div>
     </form>

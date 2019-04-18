@@ -7,7 +7,6 @@ import { IncraImportWizardComponent } from './incra-import-wizard/incra-import-w
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { BatchSchedulingsComponent } from './exports/batch-schedulings/batch-schedulings.component';
 import { NotImplementedComponent } from './not-implemented/not-implemented.component';
-import { IncraImportWizardSubmitComponent } from './incra-import-wizard/incra-import-wizard-submit/incra-import-wizard-submit.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -17,7 +16,6 @@ const routes: Routes = [
     children: [
       { path: 'wizards/incrawizard', component: IncraImportWizardComponent },
       {path:'exports/batchscheduling',component:BatchSchedulingsComponent},
-      { path: 'wizards/submitImportIncraWizard', component: IncraImportWizardSubmitComponent },
       {path:'umimplemented',component:NotImplementedComponent}
     ],
   },

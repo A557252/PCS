@@ -18,6 +18,7 @@ import { NotImplementedComponent } from './not-implemented/not-implemented.compo
 import { SharedModule } from './shared/material/shared.module';
 import { DialogComponent } from './shared/dialog/dialog.component';
 import { IncraImportWizardSubmitComponent } from './incra-import-wizard/incra-import-wizard-submit/incra-import-wizard-submit.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import { IncraImportWizardSubmitComponent } from './incra-import-wizard/incra-im
     ExportsModule,
     SharedModule
   ],
-  providers: [AuthenticationService,AuthenticationGuard],
+  providers: [AuthenticationService,AuthenticationGuard,DatePipe],
   bootstrap: [AppComponent],
   entryComponents:[DialogComponent]
 })

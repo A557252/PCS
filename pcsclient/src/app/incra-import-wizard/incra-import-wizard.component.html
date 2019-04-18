@@ -1,4 +1,4 @@
-<app-card-layout [cardContainerStyle]="'144px'" [cardIcon]="'import_export'">
+<app-card-layout [cardContainerStyle]="'144px'" [cardIcon]="'import_export'" *ngIf="!showOtherPartOfForm">
     <form class="example-form" [formGroup]="incraForm">
       <div class="row">
         <div class="col-3">
@@ -7,7 +7,7 @@
         <div class="col-4">
           <mat-card class="choose_file">
             <div class="ml-2">
-              <input type="file" id="incraFile" name="myFile" class="text-white" (change)="onFileChange($event);">
+              <input type="file" id="incraFile" #fileData name="myFile" class="text_wite" (change)="onFileChange($event);" required>
             </div>
           </mat-card>
         </div>
@@ -18,7 +18,7 @@
         </div>
         <div class="col">
           <mat-form-field class="w-100">
-            <input matInput formControlName="scheduleName">
+            <input matInput formControlName="scheduleName" readonly>
           </mat-form-field>
         </div>
       </div>
@@ -28,17 +28,25 @@
         </div>
         <div class="col">
           <mat-form-field class="w-100">
-            <input matInput formControlName="group">
+            <input matInput formControlName="group" readonly>
           </mat-form-field>
         </div>
       </div>
       <div class="flex-row d-flex">
         <div>
-          <button mat-raised-button class="button_style" (click)="upload()">IMPORT</button>
+          <button mat-raised-button class="button_style" [disabled]="incraForm.invalid" (click)="getParameters()">IMPORT</button>
         </div>
         <div class="ml-auto">
-          <button mat-raised-button class="button_style">CANCEL</button>
+          <button mat-raised-button class="button_style" (click)="deleteIncra()">CANCEL</button>
         </div>
       </div>
     </form>
   </app-card-layout>
+  <app-incra-import-wizard-submit 
+  *ngIf="showOtherPartOfForm" 
+  [fileName]="fileName" 
+  [schedulename]="scheduleName"
+  [idResponse]="idResponse"
+  [parameterGot]="parameterGot"
+  [job]="JOB"
+  ></app-incra-import-wizard-submit>

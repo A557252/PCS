@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PcsSchedulingServicesService } from '../../services/pcs-scheduling-services.service';
+import { MatSort, MatPaginator, MatTableDataSource } from '@angular/material';
 
 @Component({
   selector: 'app-pcs-batch-scheduling',
@@ -8,23 +9,20 @@ import { PcsSchedulingServicesService } from '../../services/pcs-scheduling-serv
 })
 export class PcsBatchSchedulingComponent implements OnInit {
 
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;    
+
+  displayedColumns: string[] = ['Jobs', 'Schedule Date', 'Start Date', 'End Date','Parameters','Remark'];
+  dataSource = new MatTableDataSource();
+
+
+
   pcsData;
   showSpinner:boolean=true;
   constructor(private pcsBatchScheduling:PcsSchedulingServicesService) { }
 
   ngOnInit() {
-    this.pcsBatchScheduling.getAllPcsSchedulingData()
-    .subscribe(
-      (response:any)=>{
-        this.pcsData=response.result;
-        
-        this.showSpinner=false;
-        console.log(response);
-      },
-      error=>{
-        console.log("some error ocured");
-      }
-    )
+      
   }
 
 
