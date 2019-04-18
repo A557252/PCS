@@ -1,10 +1,10 @@
 <app-card-layout [cardContainerStyle]="'144px'" [cardIcon]="'import_export'" *ngIf="!showOtherPartOfForm">
     <form class="example-form" [formGroup]="incraForm">
-      <div class="row">
-        <div class="col-3">
+      <div class="row  mb-sm-0 mb-4 ">
+        <div class="col-md-3 col">
           <label>INCRA Continues or Dated file</label>
         </div>
-        <div class="col-4">
+        <div class="col-md-4 col">
           <mat-card class="choose_file">
             <div class="ml-2">
               <input type="file" id="incraFile" #fileData name="myFile" class="text_wite" (change)="onFileChange($event);" required>
@@ -12,7 +12,7 @@
           </mat-card>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-sm-0 mb-4">
         <div class="col-3">
           <label>Schedule Name</label>
         </div>
@@ -22,7 +22,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-sm-0 mb-4">
         <div class="col-3">
           <label>Group</label>
         </div>

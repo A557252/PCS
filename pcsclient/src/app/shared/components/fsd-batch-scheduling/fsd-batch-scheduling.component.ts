@@ -19,7 +19,8 @@ export class FsdBatchSchedulingComponent implements OnInit {
   disablePrev:boolean;
   disableNext:boolean;
   currentPage:number=1;
-
+  fsdHeaderList = ["Job", "Schedule Date", "Start Date", "End Date", "Parameters"];
+  
   constructor(private fsdBatchScheduling:FsdSchedulingServicesService) { }
 
   ngOnInit() {
@@ -34,6 +35,19 @@ export class FsdBatchSchedulingComponent implements OnInit {
     );
     this.fetch(this.initial,this.limit);
     this.checkDisability();
+    const temp_obj = {
+      name: 'abc',
+      start_date: 'start',
+      end_date: 'end',
+      parameters: 'parameters',
+      remarks: 'remarks'
+    }
+    this.fsdDataTotal = [];
+    let i = 0;
+    while(i<50) {
+      this.fsdDataTotal.push(temp_obj);
+      i++;
+    }
   }
 
   nextFetch(){

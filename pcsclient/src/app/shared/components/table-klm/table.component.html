@@ -1,0 +1,35 @@
+<div class="table-responsive" style="overflow:scroll">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="text-center"></th>
+        <th *ngFor="let header of headerList">{{header}}</th>
+        <th class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let rowdata of rowList">
+        <td class="text-center">
+          <mat-checkbox>
+          </mat-checkbox>
+        </td>
+        <td>{{rowdata.job}}</td>
+        <td>{{rowdata.schedule_date}}</td>
+        <td>{{rowdata.start_date}}</td>
+        <td>{{rowdata.end_date}}</td>
+        <td>{{rowdata.parameters}}</td>
+        <td class="td-actions text-center">
+          <button mat-icon-button color="primary">
+            <mat-icon aria-label="Example icon-button with a heart icon">file_copy</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>
+          </button>
+          <button class="card_icon px-0 ml-4" mat-raised-button>
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

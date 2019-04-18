@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, SimpleChanges } from '@angular/core';
 import { TokenmanagemnetService } from '../shared/services/tokenmanagemnet.service';
 import { Router } from '@angular/router';
+import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-side-menu',
@@ -17,21 +18,56 @@ export class SideMenuComponent implements OnInit {
       title: 'Wizards', icon: 'W',
       subMenu: [
         { title: 'Snapshot/Compose Schedule Wizard', icon: 'SW', link: 'exports/batchscheduling' },
-        { title: 'Interface Wizard', icon: 'IW', link: 'umimplemented'  },
+        { title: 'Interface Wizard', icon: 'IW', link: './wizards/submitImportIncraWizard'  },
         { title: 'Incra Import Wizard', icon: 'IIW', link: './wizards/incrawizard', }
       ]
     },
     { title: 'Export', icon: 'import_export' ,link:'umimplemented'},
     { title: 'Checks', icon: 'check_box',link:'umimplemented' }
   ];
-  constructor(private tokenMangement:TokenmanagemnetService,private router:Router) { }
+  private mobileQuery: MediaQueryList;
+  //private _mobileQueryListener: () => void;
+  @ViewChild('klmSideNav') klmSideNav : any;
+  menuIcon: String = '';
 
-  ngOnInit() {
+  constructor(private tokenMangement:TokenmanagemnetService,private router:Router,  private media: MediaMatcher,
+    private changeDetectorRef: ChangeDetectorRef) { 
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+    //this._mobileQueryListener = () => changeDetectorRef.detectChanges();
+    this.mobileQuery.addListener(this._mobileQueryListener);
   }
-
+  _mobileQueryListener = () => {
+    this.setMenuIcon();
+    this.changeDetectorRef.detectChanges();
+  }
+  ngOnInit() {
+    
+  }
+  ngAfterViewInit() {
+    this.setMenuIcon();
+  }
+  ngOnDestroy(): void {
+    this.mobileQuery.removeListener(this._mobileQueryListener);
+  }
   logoutUser(){
     this.tokenMangement.logoutUser();
     this.router.navigate(['/login']);
   }
-
+  navigateClick(){
+    if(this.mobileQuery.matches) {
+      this.klmSideNav.close();
+    }
+  }
+  setMenuIcon() {
+    if(this.mobileQuery.matches) {
+      this.menuIcon = 'menu';
+      return;
+    }
+    if(this.klmSideNav.opened) {
+      this.menuIcon = 'arrow_back';
+    } else {
+      this.menuIcon = 'menu';
+    }
+    this.changeDetectorRef.detectChanges();
+  }
 }

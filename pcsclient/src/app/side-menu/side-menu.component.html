@@ -1,5 +1,6 @@
 <mat-sidenav-container fullscreen>
-    <mat-sidenav opened #sidenav mode="side" class="mat_sidenav_style">
+    <mat-sidenav [opened]="!mobileQuery.matches" #klmSideNav [mode]="mobileQuery.matches ? 'over' : 'side'" 
+      class="mat_sidenav_style" [fixedInViewport]="mobileQuery.matches">
       <ng-container>
         <div class="d-flex flex-column">
           <div class="p-4 mx-auto">
@@ -16,7 +17,7 @@
           </mat-card>
           <ul class="side_nav_sub_header px-3">
             <ng-container *ngFor="let sideNav of sideNavList">
-              <li *ngIf="!sideNav.subMenu; else elseBlock" [routerLink]="[sideNav.link]" class="my-2 nav_menu_li d-flex align-items-center px-3">
+              <li *ngIf="!sideNav.subMenu; else elseBlock" (click)="navigateClick()" [routerLink]="[sideNav.link]" class="my-2 nav_menu_li d-flex align-items-center px-3">
                 <div class="d-flex align-items-center">
                   <mat-icon class="side_nav_title_font mr-2">{{sideNav.icon}}</mat-icon>
                   <span class="side_nav_title_font ml-3"> {{sideNav.title}}</span>
@@ -35,7 +36,7 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <ng-container *ngFor="let subMenu of sideNav.subMenu">
-                        <li class="my-3 nav_menu_li d-flex align-items-center px-3" [routerLink]="subMenu.link">
+                        <li class="my-3 nav_menu_li d-flex align-items-center px-3" (click)="navigateClick()" [routerLink]="subMenu.link">
                           <div class="d-flex align-items-center">
                               <mat-icon class="side_nav_title_font mr-2">{{subMenu.icon}}</mat-icon>
                               <span class="side_nav_title_font ml-3"> {{subMenu.title}}</span>  
@@ -59,8 +60,8 @@
     <mat-sidenav-content>
         <mat-toolbar class="d-flex">
             <div class="mr-4">
-              <button mat-fab class="toolbar_text bg-white toolbar_menu_icon">
-                <mat-icon aria-label="Example icon-button with a heart icon" class="round-icon">more_vert</mat-icon>
+              <button mat-fab class="toolbar_text bg-white toolbar_menu_icon"  (click)="klmSideNav.toggle();setMenuIcon()">
+                <mat-icon aria-label="Example icon-button with a heart icon" class="round-icon">{{menuIcon}}</mat-icon>
               </button>
             </div>
             <div><label>Incra Import Wizard</label></div>

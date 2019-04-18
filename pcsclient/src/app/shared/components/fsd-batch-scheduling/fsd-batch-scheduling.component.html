@@ -1,23 +1,34 @@
 <app-card-layout [cardContainerStyle]="'20px'" [cardIcon]="'schedule'" [cardHeader]="'FSDS Jobs'">
-  <div class="table-responsive" style="overflow:scroll">
-    <div class="row">
-      <div class="col-md-12">
-          <nav aria-label="Page navigation example">
-              <ul class="pagination justify-content-end">
-                  <li class="page-item">
-                      <a class="page-link"> {{currentPage}} of total {{pages}}
-                      </a>
-                      </li> 
-                <li class="page-item">
-                    <button class="page-link" (click)="previousFetch()" [disabled]="disablePrev">Prev</button>
-                  </li>
-                <li class="page-item">
-                  <button class="page-link" (click)="nextFetch()" [disabled]="disableNext">Next</button>
-                </li>
-              </ul>
-            </nav>
-
-        <div class="material-datatables">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item">
+        <a class="page-link"> {{currentPage}} of total {{pages}}
+        </a>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="previousFetch()" [disabled]="disablePrev">Prev</button>
+      </li>
+      <li class="page-item">
+        <button class="page-link" (click)="nextFetch()" [disabled]="disableNext">Next</button>
+      </li>
+    </ul>
+  </nav>
+  <app-table [headerList]="fsdHeaderList" [rowList]="fsdDataTotal"></app-table>
+  <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-end">
+        <li class="page-item">
+          <a class="page-link"> {{currentPage}} of total {{pages}}
+          </a>
+          </li> 
+        <li class="page-item">
+            <button class="page-link" (click)="previousFetch()" [disabled]="disablePrev">Prev</button>
+          </li>
+        <li class="page-item">
+          <button class="page-link" (click)="nextFetch()" [disabled]="disableNext">Next</button>
+        </li>
+      </ul>
+    </nav>
+  <!-- <div class="material-datatables">
           <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%"
             style="width:100%">
             <thead>
@@ -85,10 +96,7 @@
                 </li>
               </ul>
             </nav>
-        </div>
-      </div>
-    </div>
-  </div>
+        </div> -->
 </app-card-layout>
 
 <!-- <div class="col-md-12">

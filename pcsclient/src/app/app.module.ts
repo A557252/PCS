@@ -29,7 +29,7 @@ import { DatePipe } from '@angular/common';
     SideMenuComponent,
     NotImplementedComponent,
     IncraImportWizardSubmitComponent,
-    DialogComponent
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
