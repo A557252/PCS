@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginComponent } from './login.component';
 import { TestModule } from 'src/test-helpers/test.module';
-import { AuthenticationServiceMock } from 'src/test-helpers/AuthenticationServiceMock';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
