@@ -35,19 +35,8 @@ export class FsdBatchSchedulingComponent implements OnInit {
     );
     this.fetch(this.initial,this.limit);
     this.checkDisability();
-    const temp_obj = {
-      name: 'abc',
-      start_date: 'start',
-      end_date: 'end',
-      parameters: 'parameters',
-      remarks: 'remarks'
-    }
-    this.fsdDataTotal = [];
-    let i = 0;
-    while(i<50) {
-      this.fsdDataTotal.push(temp_obj);
-      i++;
-    }
+    console.log(this.fsdDataTotal);
+    
   }
 
   nextFetch(){
@@ -75,6 +64,19 @@ export class FsdBatchSchedulingComponent implements OnInit {
       },
       error=>{
         console.log("some error ocured");
+        const temp_obj = {
+          name: 'abc',
+          start_date: 'start',
+          end_date: 'end',
+          parameters: 'parameters',
+          remarks: 'remarks'
+        }
+        this.fsdDataTotal = [];
+        let i = 0;
+        while(i<50) {
+          this.fsdDataTotal.push(temp_obj);
+          i++;
+        }
       }
     )
   }
