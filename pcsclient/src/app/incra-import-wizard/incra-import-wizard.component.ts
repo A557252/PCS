@@ -1,8 +1,8 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, NgForm, FormControl } from '@angular/forms';
+import { Component, ViewChild, ElementRef } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { IncraImportService } from '../shared/services/incra-import.service';
-import { HttpEventType, HttpResponse, HttpEvent } from '@angular/common/http';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-incra-import-wizard',
   templateUrl: './incra-import-wizard.component.html',
@@ -19,11 +19,11 @@ export class IncraImportWizardComponent {
   idResponse:string="";
   fileName:String="";
 
-
   selectedFiles:FileList;
   currentFileUpload:File;
   updatedFileSuccess:boolean=false;
   updatedFileFailure:boolean=false;
+
   showOtherPartOfForm:boolean=false;
 
   completeParameters:string="";
@@ -44,7 +44,6 @@ export class IncraImportWizardComponent {
     });
     this.currentDate=new Date();
   }
-
   onFileChange(event) {
     this.selectedFiles=event.target.files;
     this.fileName=this.selectedFiles.item(0).name;
@@ -56,13 +55,11 @@ export class IncraImportWizardComponent {
 
   getParameters(){
     this.currentFileUpload=this.selectedFiles.item(0);
-    console.log(this.currentFileUpload)
     this.incraImport.getParameter(this.currentFileUpload).subscribe(
       (response:any)=>{
         this.parameterGot=response.result.parameter;
         this.idResponse=response.result.id;
-        console.log(response);
-        console.log(this.parameterGot);
+        
         this.fileType=response.result.fileType;
         this.showOtherPartOfForm=true;
         if(this.fileType=="C"){
@@ -72,6 +69,11 @@ export class IncraImportWizardComponent {
         }
       }
     )
+  }
 
+  incraImportForm(event){
+    //this.deleteIncra();
+    this.showOtherPartOfForm=false;
+    console.log("here");
   }
 }

@@ -1,18 +1,26 @@
-.import_export {
-    background-color: #F50A5E;
-    width: max-content;
-    color: white;
-    padding: 16px 13px 16px 13px;
-    border-radius: 5px;
-    position: relative;
-    top: -40px;
-    box-shadow: 0 5px 20px 0px rgba(0, 0, 0, 0.2), 0 13px 24px -11px rgba(0, 161, 228, 0.2);
+
+.fle-copy-custom{
+    color: #00BCD4;
 }
-.choose_file {
-    background-color: #F50A5E;
-    border-radius: 40px !important;
+.delete-custom{
+    color:#F44336;
 }
-.button_style {
-    background-color: #F50A5E;
-    color: white;
+.custom-more-vert{
+    color: #444;
+}
+td{
+    font-size: 14px;
+}
+th{
+    font-size: 18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+}
+.custom-allign-center{
+    text-align: center;
+}
+
+.custom-pagination-input{
+width: 60px;
+height: 20px;
 }

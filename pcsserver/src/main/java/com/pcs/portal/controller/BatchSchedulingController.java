@@ -32,7 +32,7 @@ public class BatchSchedulingController {
 	}
 	
 	@GetMapping("/pcsschedule/{from}/{to}")
-	public ApiResponse<Void> getAllPcsScedule(@RequestParam("from") int from,@RequestParam("to") int to){
+	public ApiResponse<Void> getAllPcsScedule(@PathVariable("from") int from,@PathVariable("to") int to){
 		List<PcsBatchScheduling> allPcsBatchSchedule= batchScheduling.getAllPcsBatchSchedulingData(from,to);
 		return new ApiResponse<>(HttpStatus.OK.value(),"success",allPcsBatchSchedule);
 	}

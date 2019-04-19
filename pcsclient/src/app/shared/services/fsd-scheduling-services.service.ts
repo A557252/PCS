@@ -8,13 +8,11 @@ import { TokenmanagemnetService } from './tokenmanagemnet.service';
 export class FsdSchedulingServicesService {
 
   constructor(private httpClient:HttpClient,private tokenManagement:TokenmanagemnetService) { }
-
   getAllFsdSchedulingData(from:number,to:number){
     let token=this.getToken();
     const header=new HttpHeaders({
       'Authorization':token
     })
-    console.log("http://localhost:9000/batchscheduling/fsdschedule/"+from+"/"+to);
     return this.httpClient.get("http://localhost:9000/batchscheduling/fsdschedule/"+from+"/"+to,{headers:header});
   }
 

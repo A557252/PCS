@@ -7,14 +7,7 @@
             <img src="assets/img/AFKL_Logo.png">
           </div>
           <mat-divider></mat-divider>
-          <mat-card class="home_card mx-3 my-3">
-            <mat-card-content>
-              <div class="d-flex align-items-center">
-                <mat-icon class="mr-2">home</mat-icon>
-                <span class="ml-3"> Home</span>
-              </div>
-            </mat-card-content>
-          </mat-card>
+
           <ul class="side_nav_sub_header px-3">
             <ng-container *ngFor="let sideNav of sideNavList">
               <li *ngIf="!sideNav.subMenu; else elseBlock" (click)="navigateClick()" [routerLink]="[sideNav.link]" class="my-2 nav_menu_li d-flex align-items-center px-3">
@@ -36,7 +29,7 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <ng-container *ngFor="let subMenu of sideNav.subMenu">
-                        <li class="my-3 nav_menu_li d-flex align-items-center px-3" (click)="navigateClick()" [routerLink]="subMenu.link">
+                        <li class="my-3 nav_menu_li d-flex align-items-center px-3" (click)="navigateClick()" [routerLink]="subMenu.link" routerLinkActive="activeOption">
                           <div class="d-flex align-items-center">
                               <mat-icon class="side_nav_title_font mr-2">{{subMenu.icon}}</mat-icon>
                               <span class="side_nav_title_font ml-3"> {{subMenu.title}}</span>  
@@ -51,11 +44,6 @@
           </ul>
         </div>
       </ng-container>
-      <div class="d-flex flex-column">
-          <button class="btn btn-primary" (click)="logoutUser()">
-            logout
-          </button>
-        </div>
     </mat-sidenav>
     <mat-sidenav-content>
         <mat-toolbar class="d-flex">
@@ -73,6 +61,12 @@
               <button mat-icon-button>
                 <mat-icon aria-label="Example icon-button with a heart icon">person</mat-icon>
               </button>
+              <mat-select class="custom-dropdown">		
+                  <mat-option>Profile</mat-option>		
+                  <mat-option>Setting</mat-option>		
+                  <mat-divider></mat-divider>		
+                  <mat-option (click)="logoutUser()" >Logout</mat-option>		
+                </mat-select>
             </div>
           </mat-toolbar>
         <router-outlet></router-outlet>

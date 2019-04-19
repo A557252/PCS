@@ -1,23 +1,19 @@
 package com.pcs.portal.service.impl;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pcs.portal.dao.UserDao;
 import com.pcs.portal.model.User;
-import com.pcs.portal.model.UserDto;
 import com.pcs.portal.service.UserService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 
 @Service(value = "userService")
@@ -25,9 +21,6 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	
 	@Autowired
 	private UserDao userDao;
-
-	@Autowired
-	private BCryptPasswordEncoder bcryptEncoder;
 
 	public UserDetails loadUserByUsername(String username) {
 		User user = userDao.findByUsername(username);
@@ -47,38 +40,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 		return list;
 	}
 
-	@Override
-	public void delete(int id) {
-		userDao.deleteById(id);
-	}
 
 	@Override
 	public User findOne(String username) {
 		return userDao.findByUsername(username);
 	}
 
-	@Override
-	public User findById(int id) {
-		Optional<User> optionalUser = userDao.findById(id);
-		return optionalUser.isPresent() ? optionalUser.get() : null;
-	}
-
-    @Override
-    public UserDto update(UserDto userDto) {
-        User user = findById(userDto.getId());
-        if(user != null) {
-            BeanUtils.copyProperties(userDto, user, "password");
-            userDao.save(user);
-        }
-        return userDto;
-    }
-
-    @Override
-    public User save(UserDto user) {
-	    User newUser = new User();
-	    newUser.setUsername(user.getUsername());
-	    newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
-		newUser.setEnvironment(user.getEnvironment());
-        return userDao.save(newUser);
-    }
 }

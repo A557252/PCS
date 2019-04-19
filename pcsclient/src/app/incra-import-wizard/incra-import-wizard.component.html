@@ -1,7 +1,7 @@
-<app-card-layout [cardContainerStyle]="'144px'" [cardIcon]="'import_export'" *ngIf="!showOtherPartOfForm">
+<app-card-layout [cardContainerStyle]="'10px'" [cardIcon]="'import_export'" *ngIf="!showOtherPartOfForm">
     <form class="example-form" [formGroup]="incraForm">
       <div class="row  mb-sm-0 mb-4 ">
-        <div class="col-md-3 col">
+        <div class="col-md-3 col custom-right">
           <label>INCRA Continues or Dated file</label>
         </div>
         <div class="col-md-4 col">
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="row mb-sm-0 mb-4">
-        <div class="col-3">
+        <div class="col-3 custom-right">
           <label>Schedule Name</label>
         </div>
         <div class="col">
@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="row mb-sm-0 mb-4">
-        <div class="col-3">
+        <div class="col-3 custom-right">
           <label>Group</label>
         </div>
         <div class="col">
@@ -49,4 +49,5 @@
   [idResponse]="idResponse"
   [parameterGot]="parameterGot"
   [job]="JOB"
+  (afterIncraWizardSubmit)="incraImportForm(event)"
   ></app-incra-import-wizard-submit>

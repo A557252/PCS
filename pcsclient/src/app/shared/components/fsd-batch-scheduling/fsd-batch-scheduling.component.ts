@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FsdSchedulingServicesService } from '../../services/fsd-scheduling-services.service';
+import { MatDialog } from '@angular/material';
+import { DialogComponent } from '../../dialog/dialog.component';
 
 @Component({
   selector: 'app-fsd-batch-scheduling',
@@ -19,9 +21,10 @@ export class FsdBatchSchedulingComponent implements OnInit {
   disablePrev:boolean;
   disableNext:boolean;
   currentPage:number=1;
-  fsdHeaderList = ["Job", "Schedule Date", "Start Date", "End Date", "Parameters"];
-  
-  constructor(private fsdBatchScheduling:FsdSchedulingServicesService) { }
+  fsdHeaderList = ["Job", "Schedule Date", "Start Date", "End Date", "Parameters","Remarks"];
+  @ViewChild('goto') goto:ElementRef;
+
+  constructor(private fsdBatchScheduling:FsdSchedulingServicesService,public dialog: MatDialog) { }
 
   ngOnInit() {
     //total count
@@ -92,5 +95,29 @@ export class FsdBatchSchedulingComponent implements OnInit {
       else{
         this.disableNext=false;
       }
+  }
+
+  openDialog(msd): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '550px',
+      data: {
+        message:msd
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  directlyPage(){
+    if(this.goto.nativeElement.value > this.pages || this.goto.nativeElement.value<1){
+      this.goto.nativeElement.value="";
+      this.openDialog("please select page within range of 1 to "+this.pages);
+    }else{
+    this.currentPage=this.goto.nativeElement.value;
+    this.initial=this.currentPage*this.limit;
+    this.nextCount=this.initial+this.limit;
+    this.goto.nativeElement.value="";
+    this.fetch(this.initial,this.nextCount);
+    }
   }
 }

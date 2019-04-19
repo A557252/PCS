@@ -9,16 +9,13 @@ export class PcsSchedulingServicesService {
 
   constructor(private httpClient:HttpClient,private tokenManagement:TokenmanagemnetService) { }
 
-  getAllPcsSchedulingData(){
+  getAllPcsSchedulingData(from:number,to:number){
     let token=this.getToken();
     const header=new HttpHeaders({
       'Authorization':token
-    })
-    this.httpClient.get("http://localhost:9000/batchscheduling/pcsschedule",{headers:header}).subscribe(
-      (response:any)=>{
-        return response.result;
-      }
-    )
+    });
+    return this.httpClient.get("http://localhost:9000/batchscheduling/pcsschedule/"+from+"/"+to,{headers:header});
+
   }
 
   getToken(){

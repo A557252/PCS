@@ -101,7 +101,6 @@ public class IncraImportImpl implements IncraImport {
 		try {
 			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()+"&"+n));
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return Long.toString(n);
 	}

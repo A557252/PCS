@@ -1,12 +1,12 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, Output} from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { DialogComponent } from 'src/app/shared/dialog/dialog.component';
 import { IncraImportService } from 'src/app/shared/services/incra-import.service';
-import { HttpEventType, HttpResponse, HttpEvent } from '@angular/common/http';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-incra-import-wizard-submit',
@@ -29,14 +29,13 @@ export class IncraImportWizardSubmitComponent implements OnInit {
   updatedFileFailure:boolean=false;
   showOtherPartOfForm:boolean=false;
   scheduleTime:string;
-  msg:string="File will be imported by Batch, see batch shceduling click ok to continue";
+  msg:string="File will be imported by Batch, see batch shceduling";
 
   progress :{percentage:number}={percentage:0};
 
-  constructor(private fb: FormBuilder, public dialog: MatDialog,private incraImport:IncraImportService,private datePipe:DatePipe,
-    private router:Router
-    ) {
-  }
+  @Output() afterIncraWizardSubmit=new EventEmitter();
+
+  constructor(private fb: FormBuilder, public dialog: MatDialog,private incraImport:IncraImportService,private datePipe:DatePipe,private router:Router) {}
 
   ngOnInit() {
     this.scheduleTime=this.datePipe.transform(new Date(),'dd-MM-yy h:mm');
@@ -52,9 +51,9 @@ export class IncraImportWizardSubmitComponent implements OnInit {
     });
   }
   onClicked(value: string) {
-    this.openDialog(this.msg,0);
+    this.openDialog(this.msg);
   }
-  openDialog(msd,d:number): void {
+  openDialog(msd): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '550px',
       data: {
@@ -62,8 +61,6 @@ export class IncraImportWizardSubmitComponent implements OnInit {
       }
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(d==1){
-      }
     });
   }
 
@@ -74,8 +71,8 @@ export class IncraImportWizardSubmitComponent implements OnInit {
         if(event.type===HttpEventType.UploadProgress){
           this.progress.percentage=Math.round(100*event.loaded/event.total);
           if(this.progress.percentage==100){
-            this.openDialog(this.msg,0);
-            console.log("file uploaded successfully");
+            this.openDialog(this.msg);
+            this.afterIncraWizardSubmit.emit({"success":true});
           }
         }else if(event instanceof HttpResponse){
           this.updatedFileSuccess=true;
@@ -91,7 +88,8 @@ export class IncraImportWizardSubmitComponent implements OnInit {
     this.incraImport.cancelIncra(this.FileName,this.idResponse).subscribe(
       (res:any)=>{
               this.incraForm.reset();
-              this.openDialog("incra import operation canceled",1);
+              this.openDialog("incra import operation canceled");
+              this.afterIncraWizardSubmit.emit({"success":true});
       }
     )
   }

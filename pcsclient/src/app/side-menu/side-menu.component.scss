@@ -18,11 +18,6 @@ mat-sidenav {
     box-shadow: 3px 0 6px rgba(0,0,0,.24);
     width: 270px;
 }
-.home_card {
-    background-color: #00BED6;
-    color: white;
-    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.24);
-}
 .side_nav_title_font {
     color: #A8AFB8;
 }
@@ -42,4 +37,14 @@ mat-sidenav-container {
 .toolbar_menu_icon {
     width: 47px;
     box-shadow: 0px 1px rgba(0,0,0,.2);
+}
+.activeOption{
+    border-right: 4px solid #09d0e2;
+    background-color: #def5f7;
+}
+.custom-dropdown{
+    margin-left: -40px;
+}
+.mat-option-texts{
+    font-size: 13px;
 }
