@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import {CanActivate} from '@angular/router';
 import { TokenmanagemnetService } from '../services/tokenmanagemnet.service';
 
@@ -13,7 +12,6 @@ export class AuthenticationGuard implements CanActivate  {
   
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
     if(this.tokenManagement.isLoggedIn()){
-
       return true;
     }else{
       this.router.navigate(['login'],{queryParams:{returnUrl:state.url}});

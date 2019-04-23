@@ -14,13 +14,14 @@ export class PcsBatchSchedulingComponent implements OnInit {
   showSpinner:boolean=true;
   // totalCount:number;
   pages:number;
-  initial:number=1;
-  nextCount:number=10;
+  initial:number=0;
+  limit:number=5;
+  nextCount:number=this.limit;
   final:number;
-  limit:number=10;
   disablePrev:boolean;
   disableNext:boolean;
   currentPage:number=1;
+  pageLimit:number=5;
   pcsHeaderList=["Jobs", "Schedule Date", "Start Date", "End Date", "Parameters","Remarks"];
 
   @ViewChild('goto') goto:ElementRef;
@@ -29,23 +30,16 @@ export class PcsBatchSchedulingComponent implements OnInit {
 
   ngOnInit() {
     //total count
-    this.pcsBatchScheduling.getPcsRowCount()
-    .subscribe(
-      (response:any)=>{
-        // this.totalCount=response.result-0;
-        this.final=response.result-0;
-        this.pages=Math.floor(this.final/10);
-      }
-    );
+    this.fetchPageCount();
     this.fetch(this.initial,this.limit);
     this.checkDisability();
   }
 
   nextFetch(){
     this.showSpinner=true;
-    this.initial=this.nextCount+1;
-    this.nextCount=this.nextCount+this.limit;
-    this.currentPage+=1;
+    this.initial=this.nextCount-0+1;
+    this.nextCount=this.nextCount*1+this.limit*1+1*1;
+    this.currentPage=this.currentPage-0+1;
     this.fetch(this.initial,this.nextCount);
     this.checkDisability();
   }
@@ -67,22 +61,36 @@ export class PcsBatchSchedulingComponent implements OnInit {
         this.showSpinner=false;
       },
       error=>{
-        console.log("some error ocured");
       }
     )
   }
 
+  fetchPageCount(){
+    this.pcsBatchScheduling.getPcsRowCount()
+    .subscribe(
+      (response:any)=>{
+        // this.totalCount=response.result-0;
+        this.final=response.result-0;
+        this.pages=Math.floor(this.final/this.limit);
+      }
+    );
+  }
+
+  refreshData(){
+    this.fetch(this.initial,this.nextCount);
+  }
+
   checkDisability(){
-    if(this.initial<=1)
-      this.disablePrev=true;
-    else{
-        this.disablePrev=false;
-      }
-    if(this.nextCount+this.limit>=this.final)
-      this.disableNext=true;
-      else{
-        this.disableNext=false;
-      }
+   if(this.currentPage==1){
+     this.disablePrev=true;
+   }else{
+     this.disablePrev=false;
+   }
+   if(this.currentPage==this.pages){
+     this.disableNext=true;
+   }else{
+     this.disableNext=false;
+   }
   }
 
   openDialog(msd): void {
@@ -103,10 +111,17 @@ export class PcsBatchSchedulingComponent implements OnInit {
     }else{
     this.currentPage=this.goto.nativeElement.value;
     this.initial=this.currentPage*this.limit;
-    this.nextCount=this.initial+this.limit;
+    this.nextCount=this.initial*1+this.limit*1;
     this.goto.nativeElement.value="";
     this.fetch(this.initial,this.nextCount);
   }
+}
+
+changePageLimit(value){
+  this.limit=value;
+  this.fetchPageCount();
+  this.nextCount=this.limit-0+this.initial;
+  this.fetch(this.initial,this.nextCount);
 }
 
 }

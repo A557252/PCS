@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, ViewChild, SimpleChanges } from '@angular/core';
 import { TokenmanagemnetService } from '../shared/services/tokenmanagemnet.service';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
@@ -14,14 +14,14 @@ export class SideMenuComponent implements OnInit {
       title: 'Home', icon: 'home', link:'/dashboard'
     },
     {
-      title: 'Maintain', icon: 'settings', link:'./umimplemented'
+      title: 'Maintain', icon: 'settings', link:'/dashboard/umimplemented'
     },
-    { title: 'Flight Schedule', icon: 'access_time', link:'./umimplemented' },
+    { title: 'Flight Schedule', icon: 'access_time', link:'/dashboard/umimplemented' },
     {
-      title: 'Wizards', icon: 'W',
+      title: 'Wizards', icon: 'library_books',
       subMenu: [
-        { title: 'Snapshot/Compose Schedule Wizard', icon: 'SW', link: './umimplemented' },
-        { title: 'Interface Wizard', icon: 'IW', link: './umimplemented'  },
+        { title: 'Snapshot/Compose Schedule Wizard', icon: 'SW', link: '/dashboard/umimplemented' },
+        { title: 'Interface Wizard', icon: 'IW', link: '/dashboard/umimplemented'  },
         { title: 'Incra Import Wizard', icon: 'IIW', link: './wizards/incrawizard', }
       ]
     },
@@ -30,7 +30,8 @@ export class SideMenuComponent implements OnInit {
       {title:'Batch Scheduling' ,icon :'BS' , link:'./exports/batchscheduling'}		
     ]
   },
-    { title: 'Checks', icon: 'check_box',link:'./umimplemented' }
+    { title: 'Checks', icon: 'check_box',link:'/dashboard/umimplemented' },
+    { title: 'Help', icon: 'help',link:'/dashboard/umimplemented' }
   ];
   private mobileQuery: MediaQueryList;
   //private _mobileQueryListener: () => void;
@@ -48,7 +49,6 @@ export class SideMenuComponent implements OnInit {
     this.changeDetectorRef.detectChanges();
   }
   ngOnInit() {
-    
   }
   ngAfterViewInit() {
     this.setMenuIcon();
@@ -63,6 +63,20 @@ export class SideMenuComponent implements OnInit {
   navigateClick(){
     if(this.mobileQuery.matches) {
       this.klmSideNav.close();
+    }
+  }
+  checkExpansion(link){
+    if(link=='Wizards')
+      return true;
+    else
+      return false;
+  }
+  getActiveOption(url){
+    console.log(url);
+    if(url==="/dashboard/umimplemented"){
+      return "";
+    }else{
+      return "activeOption";
     }
   }
   setMenuIcon() {

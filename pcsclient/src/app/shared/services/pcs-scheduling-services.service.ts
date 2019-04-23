@@ -14,6 +14,7 @@ export class PcsSchedulingServicesService {
     const header=new HttpHeaders({
       'Authorization':token
     });
+    console.log("http://localhost:9000/batchscheduling/pcsschedule/"+from+"/"+to);
     return this.httpClient.get("http://localhost:9000/batchscheduling/pcsschedule/"+from+"/"+to,{headers:header});
 
   }

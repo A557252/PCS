@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
           if(response.status=='200'){
           this.tokenManagement.setToken(response.result.token);
           this.router.navigateByUrl(this.returnUrl);
-          console.log(response);
           result=true;
         }else{
           this.loggedInFail=true;

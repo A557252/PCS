@@ -3,7 +3,22 @@
           <div class="row">
             <div class="col-md-12">
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-end">
+                    <ul class="pagination justify-content-left custom-left">
+                    <li class="page-item">
+                      Show   
+                      <select (change)="changePageLimit($event.target.value)">
+                        <option >5</option>
+                        <option>10</option>
+                        <option>15</option>
+                        <option>20</option>
+                      </select>  
+                      Entries
+                    </li>
+                  </ul>
+                    <ul class="pagination justify-content-end custom-end">
+                        <li class="page-item">
+                            <button class="page-link custom-material-icon" (click)="refreshData()"><mat-icon>refresh</mat-icon></button>
+                          </li>
                         <li class="page-item">
                             <a class="page-link"> Go To Page
                               <input type="number" (keydown.enter)="directlyPage()" #goto class="custom-pagination-input">
@@ -22,64 +37,12 @@
                     </ul>
                   </nav>
               <div class="material-datatables">
-                <!-- <table id="datatables" class="table table-striped table-no-bordered table-hover table-custom-font" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Jobs</th>
-                      <th>Schedule Date</th>
-                      <th>Start Date</th>
-                      <th>End Date</th>
-                      <th>Parameters</th>
-                      <th>Remark</th>
-                      <th class="text-right">Actions</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Jobs</th>
-                      <th>Schedule Date</th>
-                      <th>Start Date</th>
-                      <th>End Date</th>
-                      <th>Parameters</th>
-                      <th>Remark</th>
-                      <th class="text-right">Actions</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr *ngIf="showSpinner">
-                          <td colspan="7" class="custom-allign-center"><img src="../../../../assets/img/spinner.gif" height="50" width="50" ></td>
-                    </tr>
-                    <tr *ngFor="let pcsData of pcsDataTotal">
-                      <td>{{pcsData.name}}</td>
-                      <td>{{pcsData.schedule_date}}</td>
-                      <td>{{pcsData.start_date}}</td>
-                      <td>{{pcsData.end_date}}</td>
-                      <td>{{pcsData.parameters}}</td>
-                      <td>{{pcsData.remarks}}</td>
-                      <td class="text-right">
-                        <a class="btn-just-icon"><i class="material-icons fle-copy-custom">file_copy</i></a>
-                        <a class="btn-just-icon"><i class="material-icons delete-custom">delete</i></a>
-                        <a class="btn-just-icon" id="navbarDropdownProfile"
-                          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="material-icons custom-more-vert">more_vert</i>
-                          <p class="d-lg-none d-md-block">
-                            More
-                          </p>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownProfile">
-                          <a class="dropdown-item" href="#">Details</a>
-                          <a class="dropdown-item" href="#">Parameters</a>
-                          <a class="dropdown-item" href="#">Change</a>
-                          <a class="dropdown-item" href="#">Info</a>
-                        </div>
-                      </td>
-                    </tr>
-      
-                  </tbody>
-                </table> -->
                 <app-table [headerList]="pcsHeaderList" [rowList]="pcsDataTotal"></app-table>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end">
+                        <li class="page-item">
+                            <button class="page-link custom-material-icon" (click)="refreshData()"><mat-icon>refresh</mat-icon></button>
+                          </li>
                         <li class="page-item">
                             <a class="page-link"> Go To Page
                               <input type="text" (keydown.enter)="directlyPage()" #goto class="custom-pagination-input">

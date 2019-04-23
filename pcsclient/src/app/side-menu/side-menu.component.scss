@@ -15,11 +15,13 @@
     list-style-type: none;
 }
 mat-sidenav {
-    box-shadow: 3px 0 6px rgba(0,0,0,.24);
-    width: 270px;
+    box-shadow: 5px 0 6px rgba(0,0,0,.24);
+    width: 260px;
+    position: absolute;
 }
+
 .side_nav_title_font {
-    color: #A8AFB8;
+    color: #3C4858;
 }
 .nav_menu_li{
     height: 48px;
@@ -47,4 +49,18 @@ mat-sidenav-container {
 }
 .mat-option-texts{
     font-size: 13px;
+}
+.custom-background{
+    background-color: #EEEEEE;
+    color: #787878;
+}
+.custom-icon{
+    font-size: 14px;
+}
+.custom-style-font{
+    font:18px 'roboto helvetica'
+}
+mat-menu-item{
+    padding-left: 15px;
+    padding-right: 10px;
 }

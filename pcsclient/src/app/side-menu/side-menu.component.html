@@ -10,7 +10,7 @@
 
           <ul class="side_nav_sub_header px-3">
             <ng-container *ngFor="let sideNav of sideNavList">
-              <li *ngIf="!sideNav.subMenu; else elseBlock" (click)="navigateClick()" [routerLink]="[sideNav.link]" class="my-2 nav_menu_li d-flex align-items-center px-3">
+              <li *ngIf="!sideNav.subMenu; else elseBlock" (click)="navigateClick()" [routerLink]="[sideNav.link]" class="my-2 nav_menu_li d-flex align-items-center px-3" >
                 <div class="d-flex align-items-center">
                   <mat-icon class="side_nav_title_font mr-2">{{sideNav.icon}}</mat-icon>
                   <span class="side_nav_title_font ml-3"> {{sideNav.title}}</span>
@@ -19,7 +19,7 @@
               <ng-template #elseBlock>
                 <li class="my-2 side_nav_sub_header">
                   <mat-accordion displayMode="flat" style>
-                    <mat-expansion-panel style="box-shadow: none;">
+                    <mat-expansion-panel style="box-shadow: none;" [expanded]="true">
                       <mat-expansion-panel-header class="px-3">
                         <mat-panel-title>
                           <div class="d-flex align-items-center">
@@ -29,9 +29,9 @@
                         </mat-panel-title>
                       </mat-expansion-panel-header>
                       <ng-container *ngFor="let subMenu of sideNav.subMenu">
-                        <li class="my-3 nav_menu_li d-flex align-items-center px-3" (click)="navigateClick()" [routerLink]="subMenu.link" routerLinkActive="activeOption">
+                        <li class="my-3 nav_menu_li d-flex align-items-center px-3" (click)="navigateClick()" [routerLink]="subMenu.link" [routerLinkActive]="getActiveOption(subMenu.link)">
                           <div class="d-flex align-items-center">
-                              <mat-icon class="side_nav_title_font mr-2">{{subMenu.icon}}</mat-icon>
+                              <mat-icon class="side_nav_title_font mr-2 custom-icon">{{subMenu.icon}}</mat-icon>
                               <span class="side_nav_title_font ml-3"> {{subMenu.title}}</span>  
                           </div>
                         </li>
@@ -46,27 +46,27 @@
       </ng-container>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar class="d-flex">
+        <mat-toolbar class="d-flex custom-background">
             <div class="mr-4">
               <button mat-fab class="toolbar_text bg-white toolbar_menu_icon"  (click)="klmSideNav.toggle();setMenuIcon()">
                 <mat-icon aria-label="Example icon-button with a heart icon" class="round-icon">{{menuIcon}}</mat-icon>
               </button>
             </div>
-            <div><label>Incra Import Wizard</label></div>
+            <div><label class="custom-style-font">Incra Import Wizard</label></div>
             <div class="ml-auto">
               <button mat-icon-button class="mr-3">
-                <mat-icon matBadge="5" matBadgeColor="warn" aria-label="Example icon-button with a heart icon">notifications
+                <mat-icon  matBadgeColor="warn" aria-label="Example icon-button with a heart icon">notifications
                 </mat-icon>
               </button>
-              <button mat-icon-button>
+              <button mat-icon-button [matMenuTriggerFor]="afterMenu">
                 <mat-icon aria-label="Example icon-button with a heart icon">person</mat-icon>
               </button>
-              <mat-select class="custom-dropdown">		
-                  <mat-option>Profile</mat-option>		
-                  <mat-option>Setting</mat-option>		
-                  <mat-divider></mat-divider>		
-                  <mat-option (click)="logoutUser()" >Logout</mat-option>		
-                </mat-select>
+              <mat-menu #afterMenu="matMenu" xPosition="after">
+                  <button mat-menu-item>Profile</button>
+                  <button mat-menu-item>Setting</button>
+                  <mat-divider></mat-divider>
+                  <button mat-menu-item (click)="logoutUser()">Logout</button>
+                </mat-menu>
             </div>
           </mat-toolbar>
         <router-outlet></router-outlet>

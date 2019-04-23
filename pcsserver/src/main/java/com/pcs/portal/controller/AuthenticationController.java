@@ -11,7 +11,7 @@ import com.pcs.portal.config.JwtTokenUtil;
 import com.pcs.portal.model.*;
 import com.pcs.portal.service.UserService;
 
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/auth")
 public class AuthenticationController {
@@ -40,4 +40,5 @@ public class AuthenticationController {
         	return new ApiResponse<>(401, "failure",error_return);
         }
     }
+    
 }

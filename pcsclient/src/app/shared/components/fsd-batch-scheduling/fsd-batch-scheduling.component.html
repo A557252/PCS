@@ -1,6 +1,21 @@
 <app-card-layout [cardContainerStyle]="'20px'" [cardIcon]="'schedule'" [cardHeader]="'FSDS Jobs'">
   <nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-end">
+      <ul class="pagination justify-content-left custom-left">
+          <li class="page-item">
+            Show   
+            <select (change)="changePageLimit($event.target.value)">
+              <option>5</option>
+              <option>10</option>
+              <option>15</option>
+              <option>20</option>
+            </select>  
+            Entries
+          </li>
+        </ul>
+    <ul class="pagination justify-content-end custom-end">
+        <li class="page-item">
+            <button class="page-link custom-material-icon" (click)="refreshData()"><mat-icon>refresh</mat-icon></button>
+          </li>
         <li class="page-item">
             <a class="page-link"> Go To Page
               <input type="number" (keydown.enter)="directlyPage()" #goto class="custom-pagination-input">
@@ -21,6 +36,9 @@
   <app-table [headerList]="fsdHeaderList" [rowList]="fsdDataTotal"></app-table>
   <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-end">
+          <li class="page-item">
+              <button class="page-link custom-material-icon" (click)="refreshData()"><mat-icon>refresh</mat-icon></button>
+            </li>
           <li class="page-item">
               <a class="page-link"> Go To Page
                 <input type="text" (keydown.enter)="directlyPage()" #goto class="custom-pagination-input">

@@ -25,6 +25,7 @@ com\pcs\portal\model\Constants.class
 com\pcs\portal\service\impl\IncraImportImpl.class
 com\pcs\portal\config\JwtAuthenticationFilter.class
 com\pcs\portal\service\UserService.class
+com\pcs\portal\sam.class
 com\pcs\portal\service\impl\BatchSchedulingServiceImpl.class
 com\pcs\portal\service\impl\UserServiceImpl.class
 com\pcs\portal\controller\UserController.class

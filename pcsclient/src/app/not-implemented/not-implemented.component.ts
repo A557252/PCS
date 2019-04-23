@@ -11,7 +11,7 @@ export class NotImplementedComponent implements OnInit {
   constructor(private router:Router) { }
 
   ngOnInit() {
-    this.router.navigate(['/dashboard/wizards/incrawizard']);
+    // this.router.navigate(['/dashboard/wizards/incrawizard']);
   }
 
 }
