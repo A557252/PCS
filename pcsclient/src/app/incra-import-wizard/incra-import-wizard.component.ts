@@ -18,6 +18,8 @@ export class IncraImportWizardComponent {
   formSubmitted:boolean=false;
   idResponse:string="";
   fileName:String="SELECT FILE";
+  errorFileUpload:boolean=false;
+  importDisabled:boolean=true;
 
   selectedFiles:FileList;
   currentFileUpload:File;
@@ -47,6 +49,13 @@ export class IncraImportWizardComponent {
   onFileChange(event) {
     this.selectedFiles=event.target.files;
     this.fileName=this.selectedFiles.item(0).name;
+    if(this.fileName.split(".")[1]!="dat"){
+      this.errorFileUpload=true;
+      this.importDisabled=true;
+    }else{
+      this.importDisabled=false;
+      this.errorFileUpload=false;
+    }
   }
 
   deleteIncra(){

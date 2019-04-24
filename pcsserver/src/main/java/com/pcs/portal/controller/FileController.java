@@ -53,10 +53,14 @@ public class FileController {
 	@Transactional
 	@PostMapping("/incraGetParameters")
 	public ApiResponse<Void> getParameter(@RequestParam("incraFile") MultipartFile incrafile){
-			if(incrafile.getOriginalFilename().substring(incrafile.getOriginalFilename().lastIndexOf('.')+1).contentEquals("dat")) {
+		if(incrafile.getOriginalFilename().substring(incrafile.getOriginalFilename().lastIndexOf('.')+1).contentEquals("dat")) {
 			FileResponse fileParameters=incraImport.makeEntryDb(incrafile);
+		if(fileParameters.getParameter().equalsIgnoreCase("error")) {
+			return new ApiResponse<>(401, "failure",new String("Empty File"));
+		}else {
 			fileParameters.setId(incraImport.StoreIncraFileTemp(incrafile));
 			return new ApiResponse<>(HttpStatus.OK.value(),"parameter",fileParameters);
+		}
 		}
 		else {
 			return new ApiResponse<>(401, "failure",new String("file format not supported"));

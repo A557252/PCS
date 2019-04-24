@@ -1,15 +1,17 @@
 <app-card-layout [cardContainerStyle]="'0px'" [cardIcon]="'import_export'" *ngIf="!showOtherPartOfForm">
     <form class="example-form" [formGroup]="incraForm">
+
       <div class="row  mb-sm-0 mb-4 ">
-        <div class="col-md-3 col custom-right">
+        <div class="col-3 custom-right">
           <label>INCRA Continues or Dated file</label>
         </div>
         <div class="col-md-4 col">
           <div>
             <div class="ml-2">
               <!-- <input type="file" id="incraFile" #fileData name="myFile" class="text-white" (change)="onFileChange($event);" required> -->
-              <input type="file" name="myFile" class="inputfile" id="incraFile" #fileData (change)="onFileChange($event);" required/>
+              <input type="file" name="myFile" class="inputfile" id="incraFile" #fileData (change)="onFileChange($event);" accept=".dat" required/>
               <label for="incraFile">{{fileName}}</label>
+              <label *ngIf="errorFileUpload"><i class="material-icons custom-error-tag" style="margin-left: 20px;margin-right: 5px">error</i>Please select flat file, with .dat extension</label>
             </div>
           </div>
         </div>
@@ -36,7 +38,7 @@
       </div>
       <div class="flex-row d-flex">
         <div>
-          <button mat-raised-button class="button_style" [disabled]="incraForm.invalid" (click)="getParameters()">IMPORT</button>
+          <button mat-raised-button class="button_style" [disabled]="importDisabled" (click)="getParameters()">IMPORT</button>
         </div>
         <div class="ml-auto">
           <button mat-raised-button class="button_style" (click)="deleteIncra()">CANCEL</button>

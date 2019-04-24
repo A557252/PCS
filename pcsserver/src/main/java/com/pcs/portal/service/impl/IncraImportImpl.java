@@ -69,6 +69,8 @@ public class IncraImportImpl implements IncraImport {
 				}if(dataArray[0].contentEquals("D")) {
 					parameters= "'"+fileName+"','"+dataArray[1]+"','"+dataArray[2]+"'";
 					fileType="D";
+				}else {
+					return new FileResponse("error", "");
 				}
 			}
 			

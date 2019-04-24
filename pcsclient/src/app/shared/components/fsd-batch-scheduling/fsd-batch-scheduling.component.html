@@ -1,4 +1,4 @@
-<app-card-layout [cardContainerStyle]="'20px'" [cardIcon]="'schedule'" [cardHeader]="'FSDS Jobs'">
+<app-card-layout [cardContainerStyle]="'00px'" [cardIcon]="'schedule'" [cardHeader]="'FSDS Jobs'">
   <nav aria-label="Page navigation example">
       <ul class="pagination justify-content-left custom-left">
           <li class="page-item">
@@ -12,24 +12,24 @@
             Entries
           </li>
         </ul>
-    <ul class="pagination justify-content-end custom-end">
+    <ul class="pagination justify-content-end custom-end" style="margin-left:  3px;">
         <li class="page-item">
             <button class="page-link custom-material-icon" (click)="refreshData()"><mat-icon>refresh</mat-icon></button>
           </li>
         <li class="page-item">
-            <a class="page-link"> Go To Page
+            <a class="page-link custom-material-icon custom-width-more"> Go to
               <input type="number" (keydown.enter)="directlyPage()" #goto class="custom-pagination-input">
             </a>
             </li> 
       <li class="page-item">
-        <a class="page-link"> {{currentPage}} of total {{pages}}
+        <a class="page-link custom-material-icon custom-width"> {{currentPage}} / {{pages}}
         </a>
       </li>
       <li class="page-item">
-        <button class="page-link" (click)="previousFetch()" [disabled]="disablePrev">Prev</button>
+        <button class="page-link custom-material-icon" (click)="previousFetch()" [disabled]="disablePrev"><mat-icon>keyboard_arrow_left</mat-icon></button>
       </li>
       <li class="page-item">
-        <button class="page-link" (click)="nextFetch()" [disabled]="disableNext">Next</button>
+        <button class="page-link custom-material-icon" (click)="nextFetch()" [disabled]="disableNext"><mat-icon>keyboard_arrow_right</mat-icon></button>
       </li>
     </ul>
   </nav>
@@ -40,19 +40,19 @@
               <button class="page-link custom-material-icon" (click)="refreshData()"><mat-icon>refresh</mat-icon></button>
             </li>
           <li class="page-item">
-              <a class="page-link"> Go To Page
+              <a class="page-link custom-material-icon custom-width-more"> Go to
                 <input type="text" (keydown.enter)="directlyPage()" #goto class="custom-pagination-input">
               </a>
               </li> 
         <li class="page-item">
-          <a class="page-link"> {{currentPage}} of total {{pages}}
+          <a class="page-link custom-material-icon custom-width"> {{currentPage}} / {{pages}}
           </a>
           </li> 
         <li class="page-item">
-            <button class="page-link" (click)="previousFetch()" [disabled]="disablePrev">Prev</button>
+            <button class="page-link custom-material-icon" (click)="previousFetch()" [disabled]="disablePrev"><mat-icon>keyboard_arrow_left</mat-icon></button>
           </li>
         <li class="page-item">
-          <button class="page-link" (click)="nextFetch()" [disabled]="disableNext">Next</button>
+          <button class="page-link custom-material-icon" (click)="nextFetch()" [disabled]="disableNext"><mat-icon>keyboard_arrow_right</mat-icon></button>
         </li>
       </ul>
     </nav>
