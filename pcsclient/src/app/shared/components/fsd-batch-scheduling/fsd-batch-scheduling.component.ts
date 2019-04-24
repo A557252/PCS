@@ -22,6 +22,7 @@ export class FsdBatchSchedulingComponent implements OnInit {
   disableNext:boolean;
   currentPage:number=1;
   fsdHeaderList=["Jobs", "Schedule Date", "Start Date", "End Date", "Parameters","Remarks"];
+  lowerPaginationNavshow:boolean=false;
 
   @ViewChild('goto') goto:ElementRef;
 
@@ -122,6 +123,11 @@ changePageLimit(value){
   this.fetchPageCount();
   this.nextCount=this.limit-0+this.initial;
   this.fetch(this.initial,this.nextCount);
+  if(value-0>10){
+    this.lowerPaginationNavshow=true;
+  }else{
+    this.lowerPaginationNavshow=false;
+  }
 }
 
 }

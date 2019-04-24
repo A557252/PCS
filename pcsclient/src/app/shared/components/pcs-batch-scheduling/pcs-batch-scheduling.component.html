@@ -34,7 +34,7 @@
                     </ul>
                   </nav>
                 <app-table [headerList]="pcsHeaderList" [rowList]="pcsDataTotal"></app-table>
-                <nav aria-label="Page navigation example">
+                <nav aria-label="Page navigation example" *ngIf="lowerPaginationNavshow">
                     <ul class="pagination justify-content-end">
                         <li class="page-item">
                             <button class="page-link custom-material-icon" (click)="refreshData()"><mat-icon>refresh</mat-icon></button>
