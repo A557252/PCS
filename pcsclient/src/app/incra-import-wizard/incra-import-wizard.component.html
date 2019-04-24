@@ -5,11 +5,13 @@
           <label>INCRA Continues or Dated file</label>
         </div>
         <div class="col-md-4 col">
-          <mat-card class="choose_file">
+          <div>
             <div class="ml-2">
-              <input type="file" id="incraFile" #fileData name="myFile" class="text_wite" (change)="onFileChange($event);" required>
+              <!-- <input type="file" id="incraFile" #fileData name="myFile" class="text-white" (change)="onFileChange($event);" required> -->
+              <input type="file" name="myFile" class="inputfile" id="incraFile" #fileData (change)="onFileChange($event);" required/>
+              <label for="incraFile">{{fileName}}</label>
             </div>
-          </mat-card>
+          </div>
         </div>
       </div>
       <div class="row mb-sm-0 mb-4">

@@ -80,17 +80,17 @@ export class FsdBatchSchedulingComponent implements OnInit {
   }
 
   checkDisability(){
-   if(this.currentPage==1){
-     this.disablePrev=true;
-   }else{
-     this.disablePrev=false;
+    if(this.currentPage<=1){
+      this.disablePrev=true;
+    }else{
+      this.disablePrev=false;
+    }
+    if(this.currentPage>=this.pages){
+      this.disableNext=true;
+    }else{
+      this.disableNext=false;
+    }
    }
-   if(this.currentPage==this.pages){
-     this.disableNext=true;
-   }else{
-     this.disableNext=false;
-   }
-  }
 
   openDialog(msd): void {
     const dialogRef = this.dialog.open(DialogComponent, {
@@ -113,6 +113,7 @@ export class FsdBatchSchedulingComponent implements OnInit {
     this.nextCount=this.initial*1+this.limit*1;
     this.goto.nativeElement.value="";
     this.fetch(this.initial,this.nextCount);
+    this.checkDisability();
   }
 }
 

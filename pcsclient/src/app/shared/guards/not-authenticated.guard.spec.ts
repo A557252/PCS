@@ -9,7 +9,5 @@ describe('NotAuthenticatedGuard', () => {
     });
   });
 
-  it('should ...', inject([NotAuthenticatedGuard], (guard: NotAuthenticatedGuard) => {
-    expect(guard).toBeTruthy();
-  }));
+
 });

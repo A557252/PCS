@@ -81,12 +81,12 @@ export class PcsBatchSchedulingComponent implements OnInit {
   }
 
   checkDisability(){
-   if(this.currentPage==1){
+   if(this.currentPage<=1){
      this.disablePrev=true;
    }else{
      this.disablePrev=false;
    }
-   if(this.currentPage==this.pages){
+   if(this.currentPage>=this.pages){
      this.disableNext=true;
    }else{
      this.disableNext=false;
@@ -114,6 +114,7 @@ export class PcsBatchSchedulingComponent implements OnInit {
     this.nextCount=this.initial*1+this.limit*1;
     this.goto.nativeElement.value="";
     this.fetch(this.initial,this.nextCount);
+    this.checkDisability();
   }
 }
 

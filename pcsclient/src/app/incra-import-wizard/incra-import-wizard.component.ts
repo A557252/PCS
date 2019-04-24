@@ -17,7 +17,7 @@ export class IncraImportWizardComponent {
   scheduleName:string;
   formSubmitted:boolean=false;
   idResponse:string="";
-  fileName:String="";
+  fileName:String="SELECT FILE";
 
   selectedFiles:FileList;
   currentFileUpload:File;
@@ -51,6 +51,7 @@ export class IncraImportWizardComponent {
 
   deleteIncra(){
   this.file.nativeElement.value=null;
+  this.fileName="SELECT FILE";
   }
 
   getParameters(){

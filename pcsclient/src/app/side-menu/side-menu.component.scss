@@ -58,7 +58,9 @@ mat-sidenav-container {
     font-size: 14px;
 }
 .custom-style-font{
-    font:18px 'roboto helvetica'
+    font-size:18px;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    font-weight: normal;
 }
 mat-menu-item{
     padding-left: 15px;

@@ -12,17 +12,17 @@ import { NotAuthenticatedGuard } from './shared/guards/not-authenticated.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent ,canActivate:[NotAuthenticatedGuard]},
+  { path: 'login', component: LoginComponent,canActivate:[NotAuthenticatedGuard]},
   {
-    path: 'dashboard', component: SideMenuComponent, canActivate: [AuthenticationGuard],
+    path: 'dashboard', component: SideMenuComponent, canActivate:[AuthenticationGuard],
     children: [
-      { path: 'wizards/incrawizard', component: IncraImportWizardComponent },
+      { path: 'wizards/incrawizard', component: IncraImportWizardComponent},
       {path:'exports/batchscheduling',component:BatchSchedulingsComponent},
       {path:'wizards/submitImportIncraWizard', component: IncraImportWizardSubmitComponent},
       {path:'umimplemented',component:NotImplementedComponent}
     ],
   },
-  { path: '**', component: PagenotfoundComponent }
+  { path: '**', component: PagenotfoundComponent}
 ];
 
 @NgModule({

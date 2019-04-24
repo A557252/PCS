@@ -72,7 +72,6 @@ export class SideMenuComponent implements OnInit {
       return false;
   }
   getActiveOption(url){
-    console.log(url);
     if(url==="/dashboard/umimplemented"){
       return "";
     }else{

@@ -1,7 +1,4 @@
 <app-card-layout [cardContainerStyle]="'20px'" [cardIcon]="'schedule'" [cardHeader]="'PCS Jobs'">
-        <div class="table-responsive">
-          <div class="row">
-            <div class="col-md-12">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-left custom-left">
                     <li class="page-item">
@@ -36,7 +33,6 @@
                       </li>
                     </ul>
                   </nav>
-              <div class="material-datatables">
                 <app-table [headerList]="pcsHeaderList" [rowList]="pcsDataTotal"></app-table>
                 <nav aria-label="Page navigation example">
                     <ul class="pagination justify-content-end">
@@ -60,8 +56,4 @@
                       </li>
                     </ul>
                   </nav>
-              </div>
-            </div>
-          </div>
-        </div>
-      </app-card-layout>
+</app-card-layout>

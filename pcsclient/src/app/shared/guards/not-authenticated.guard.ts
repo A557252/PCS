@@ -11,7 +11,7 @@ export class NotAuthenticatedGuard implements CanActivate  {
   constructor(private tokenManagement:TokenmanagemnetService,private router:Router){}
   
   canActivate(route: ActivatedRouteSnapshot,state: RouterStateSnapshot): boolean {
-    if(this.tokenManagement.isLoggedIn()){
+    if(this.tokenManagement.isLoggedInLocally()){
       this.router.navigate(['/dashboard']);
       return false;
     }else{

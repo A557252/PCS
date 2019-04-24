@@ -36,3 +36,36 @@
     text-align: right;
     color: #B0B0B0;
   }
+
+  .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+  .inputfile + label {
+    font-size: 14px;
+    color: white;
+    background-color: #EA2C6D;
+    display: inline-block;
+    border-radius: 40px;
+    padding: 12px;
+    padding-left: 35px;
+    padding-right: 35px;
+    text-align: center;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.8);
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+.inputfile:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
