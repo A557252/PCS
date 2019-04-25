@@ -11,7 +11,7 @@
               <!-- <input type="file" id="incraFile" #fileData name="myFile" class="text-white" (change)="onFileChange($event);" required> -->
               <input type="file" name="myFile" class="inputfile" id="incraFile" #fileData (change)="onFileChange($event);" accept=".dat" required/>
               <label for="incraFile">{{fileName}}</label>
-              <label *ngIf="errorFileUpload"><i class="material-icons custom-error-tag" style="margin-left: 20px;margin-right: 5px">error</i>Please select flat file, with .dat extension</label>
+              <label *ngIf="errorFileUpload" class="custom-error-tag"><i class="material-icons">error</i>Please select flat file, with .dat extension</label>
             </div>
           </div>
         </div>

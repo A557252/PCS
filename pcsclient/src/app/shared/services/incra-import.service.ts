@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient , HttpHeaders, HttpEvent, HttpRequest } from '@angular/common/http';
 import { TokenmanagemnetService } from './tokenmanagemnet.service';
 import { Observable } from 'rxjs';
+import { Constants } from 'src/app/constant/data.constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IncraImportService {
 
-  constructor(private httpClient:HttpClient,private tokenManagement:TokenmanagemnetService) { }
+  constructor(private httpClient:HttpClient,private tokenManagement:TokenmanagemnetService,private contants:Constants) { }
 
   doIncraImport(file:string,value,id:string,scheduleName,parameterGot:string):Observable<HttpEvent<{}>>{
     let formData:FormData=new FormData();
@@ -23,7 +24,7 @@ export class IncraImportService {
     const header=new HttpHeaders({
       'Authorization':token
     });
-    const req=new HttpRequest('POST','http://localhost:9000/wizards/incraupload',formData,{
+    const req=new HttpRequest('POST',this.contants.INCRA_IMPORT_WIZARD_UPLOAD_INCRAFILE,formData,{
       headers:header,
       reportProgress:true,
       responseType:'text'
@@ -39,7 +40,7 @@ export class IncraImportService {
     const header=new HttpHeaders({
       'Authorization':token
     });
-    return this.httpClient.post('http://localhost:9000/wizards/incraGetParameters',formDatas,{headers:header});
+    return this.httpClient.post(this.contants.INCRA_IMPORT_WIZARD_GET_PARAMETER,formDatas,{headers:header});
   }
 
   cancelIncra(file:string,id:string){
@@ -50,7 +51,7 @@ export class IncraImportService {
     const header=new HttpHeaders({
       'Authorization':token
     });
-    return this.httpClient.post('http://localhost:9000/wizards/deleteincra',formDatas,{headers:header});
+    return this.httpClient.post(this.contants.INCRA_IMPORT_WIZARD_DELETE_INCRATEMP_FILE,formDatas,{headers:header});
   }
 
   getToken(){

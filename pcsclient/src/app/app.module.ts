@@ -20,6 +20,7 @@ import { DialogComponent } from './shared/dialog/dialog.component';
 import { IncraImportWizardSubmitComponent } from './incra-import-wizard/incra-import-wizard-submit/incra-import-wizard-submit.component';
 import { DatePipe } from '@angular/common';
 import { NotAuthenticatedGuard } from './shared/guards/not-authenticated.guard';
+import { Constants } from './constant/data.constant';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import { NotAuthenticatedGuard } from './shared/guards/not-authenticated.guard';
     ExportsModule,
     SharedModule
   ],
-  providers: [AuthenticationService,AuthenticationGuard,DatePipe,NotAuthenticatedGuard],
+  providers: [AuthenticationService,AuthenticationGuard,DatePipe,NotAuthenticatedGuard,Constants],
   bootstrap: [AppComponent],
   entryComponents:[DialogComponent]
 })

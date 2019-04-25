@@ -61,6 +61,7 @@ export class IncraImportWizardComponent {
   deleteIncra(){
   this.file.nativeElement.value=null;
   this.fileName="SELECT FILE";
+  this.errorFileUpload=false;
   }
 
   getParameters(){
@@ -82,8 +83,6 @@ export class IncraImportWizardComponent {
   }
 
   incraImportForm(event){
-    //this.deleteIncra();
     this.showOtherPartOfForm=false;
-    console.log("here");
   }
 }

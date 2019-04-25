@@ -1,6 +1,5 @@
 com\pcs\portal\service\IncraImport.class
 com\pcs\portal\config\JwtAuthenticationEntryPoint.class
-com\pcs\portal\dao\impl\FsdBatchSchedulingImpl.class
 com\pcs\portal\model\FsdBatchScheduling.class
 com\pcs\portal\dao\PcsBatchSchedulingDao.class
 com\pcs\portal\model\User.class

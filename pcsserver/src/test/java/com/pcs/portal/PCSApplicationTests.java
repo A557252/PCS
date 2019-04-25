@@ -64,8 +64,7 @@ public class PCSApplicationTests {
 		MvcResult result=mockMvc.perform(post("/auth/login").content(jsonrequest).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk()).andReturn();
 		String resultContent=result.getResponse().getContentAsString();
 		ApiResponse response=objectMapper.readValue(resultContent, ApiResponse.class);
-		
-		Assert.assertTrue(response.getStatus()!=200);
+		Assert.assertFalse(response.getStatus()!=200);
 	}
 	
 	@Test
@@ -78,7 +77,7 @@ public class PCSApplicationTests {
 		MvcResult result=mockMvc.perform(post("/auth/login").content(jsonrequest).contentType(MediaType.APPLICATION_JSON_VALUE)).andExpect(status().isOk()).andReturn();
 		String resultContent=result.getResponse().getContentAsString();
 		ApiResponse response=objectMapper.readValue(resultContent, ApiResponse.class);
-		Assert.assertTrue(response.getStatus()==200);
+		Assert.assertTrue(response.getStatus()!=200);
 	}
 	
 }

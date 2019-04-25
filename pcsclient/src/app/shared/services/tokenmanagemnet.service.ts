@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import {map} from 'rxjs/operators';
-import { pipe } from 'rxjs';
+import { Constants } from '../../constant/data.constant';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenmanagemnetService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient,private constants:Constants) { }
 
   setToken(token){
     localStorage.setItem('authtoken',token);
@@ -30,7 +29,7 @@ export class TokenmanagemnetService {
     const header=new HttpHeaders({
     'Authorization':"Bearer "+token
   })
-    return this.httpClient.get("http://localhost:9000/user/checklogin",{headers:header});
+    return this.httpClient.get(this.constants.CHECK_LOGIN,{headers:header});
   }
 
   logoutUser(){
