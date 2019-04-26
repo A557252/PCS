@@ -10,43 +10,42 @@ import javax.persistence.Table;
 @Entity
 @Table(name="pcs_batch_schedulings")
 public class PcsBatchScheduling {
-
 	@Id
 	@Column
 	private int id;
-	@Column
-	private Integer pdn_id;
+	@Column(name="pdn_id")
+	private Integer pdnId;
 	@Column
 	private String name;
-	@Column
-	private Date schedule_date;
+	@Column(name="schedule_date")
+	private Date scheduleDate;
 	@Column
 	private String parameters;
-	@Column
-	private Date start_date;
-	@Column
-	private Date end_date;
+	@Column(name="start_date")
+	private Date startDate;
+	@Column(name="end_date")
+	private Date endDate;
 	@Column
 	private String remarks;
-	@Column
-	private Date date_created;
-	@Column
-	private Date date_modified;
-	@Column
-	private String user_created;
-	@Column
-	private String user_modified;
+	@Column(name="date_created")
+	private Date dateCreated;
+	@Column(name="date_modified")
+	private Date dateModified;
+	@Column(name="user_created")
+	private String userCreated;
+	@Column(name="user_modified")
+	private String userModified;
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public Integer getPdn_id() {
-		return pdn_id;
+	public Integer getPdnId() {
+		return pdnId;
 	}
-	public void setPdn_id(Integer pdn_id) {
-		this.pdn_id = pdn_id;
+	public void setPdnId(Integer pdnId) {
+		this.pdnId = pdnId;
 	}
 	public String getName() {
 		return name;
@@ -54,11 +53,11 @@ public class PcsBatchScheduling {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getSchedule_date() {
-		return schedule_date;
+	public Date getScheduleDate() {
+		return scheduleDate;
 	}
-	public void setSchedule_date(Date schedule_date) {
-		this.schedule_date = schedule_date;
+	public void setScheduleDate(Date scheduleDate) {
+		this.scheduleDate = scheduleDate;
 	}
 	public String getParameters() {
 		return parameters;
@@ -66,17 +65,17 @@ public class PcsBatchScheduling {
 	public void setParameters(String parameters) {
 		this.parameters = parameters;
 	}
-	public Date getStart_date() {
-		return start_date;
+	public Date getStartDate() {
+		return startDate;
 	}
-	public void setStart_date(Date start_date) {
-		this.start_date = start_date;
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
 	}
-	public Date getEnd_date() {
-		return end_date;
+	public Date getEndDate() {
+		return endDate;
 	}
-	public void setEnd_date(Date end_date) {
-		this.end_date = end_date;
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -84,29 +83,28 @@ public class PcsBatchScheduling {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public Date getDate_created() {
-		return date_created;
+	public Date getDateCreated() {
+		return dateCreated;
 	}
-	public void setDate_created(Date date_created) {
-		this.date_created = date_created;
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
 	}
-	public Date getDate_modified() {
-		return date_modified;
+	public Date getDateModified() {
+		return dateModified;
 	}
-	public void setDate_modified(Date date_modified) {
-		this.date_modified = date_modified;
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
 	}
-	public String getUser_created() {
-		return user_created;
+	public String getUserCreated() {
+		return userCreated;
 	}
-	public void setUser_created(String user_created) {
-		this.user_created = user_created;
+	public void setUserCreated(String userCreated) {
+		this.userCreated = userCreated;
 	}
-	public String getUser_modified() {
-		return user_modified;
+	public String getUserModified() {
+		return userModified;
 	}
-	public void setUser_modified(String user_modified) {
-		this.user_modified = user_modified;
+	public void setUserModified(String userModified) {
+		this.userModified = userModified;
 	}
-	
 }

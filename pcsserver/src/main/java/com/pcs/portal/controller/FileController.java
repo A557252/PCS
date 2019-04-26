@@ -35,18 +35,17 @@ public class FileController {
 			@RequestParam("idFetc") String id,
 			@RequestParam("parameters") String parameters
 			){
-		System.out.println("came here inside incraupload");
 		if(incrafile.substring(incrafile.lastIndexOf('.')+1).contentEquals("dat")) {
-			boolean result=incraImport.StoreIncraFile(incrafile,id);
+			boolean result=incraImport.storeIncraFile(incrafile,id);
 			if(result) {
 			incraImport.saveIntoBatchScheduling(job, parameters, remarks);
-			return new ApiResponse<>(HttpStatus.OK.value(),"parameter",parameters);
+			return new ApiResponse<>(HttpStatus.OK.value(),Constants.PARAMETER,parameters);
 		}
 		else {
-			return new ApiResponse<>(401, "failure",new String("file format not supported"));
+			return new ApiResponse<>(401, Constants.FAILURE,Constants.FILEFORMATNOTSUPPORTED);
 		}
 			}else {
-				return new ApiResponse<>(401, "failure",new String("cannot store file"));
+				return new ApiResponse<>(401, Constants.FAILURE,Constants.CANNOTSTOREFILE);
 			}
 	}
 	
@@ -56,25 +55,24 @@ public class FileController {
 		if(incrafile.getOriginalFilename().substring(incrafile.getOriginalFilename().lastIndexOf('.')+1).contentEquals("dat")) {
 			FileResponse fileParameters=incraImport.makeEntryDb(incrafile);
 		if(fileParameters.getParameter().equalsIgnoreCase("error")) {
-			return new ApiResponse<>(401, "failure",new String("Empty File"));
+			return new ApiResponse<>(401, Constants.FAILURE,Constants.EMPTYFILE);
 		}else {
-			fileParameters.setId(incraImport.StoreIncraFileTemp(incrafile));
-			return new ApiResponse<>(HttpStatus.OK.value(),"parameter",fileParameters);
+			fileParameters.setId(incraImport.storeIncraFileTemp(incrafile));
+			return new ApiResponse<>(HttpStatus.OK.value(),Constants.PARAMETER,fileParameters);
 		}
 		}
 		else {
-			return new ApiResponse<>(401, "failure",new String("file format not supported"));
+			return new ApiResponse<>(401, Constants.FAILURE,Constants.FILEFORMATNOTSUPPORTED);
 		}
 	}
 	
 	@PostMapping("/deleteincra")
 	public ApiResponse<Void> deleteUploadedFile(@RequestParam("incraFile") String incrafile,@RequestParam("idFetc") String id){
-		System.out.println("deleting temp file..."+incrafile+"&"+id);
-	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+incrafile+"&"+id);
+	    File f1=new File(Constants.ROOTFILE_LOCATION+Constants.PATH_DELIMETER+incrafile+"&"+id);
 		if(f1.delete()) 
-			return new ApiResponse<>(HttpStatus.OK.value(),"parameter","success");
+			return new ApiResponse<>(HttpStatus.OK.value(),Constants.PARAMETER,Constants.SUCCESS);
 		else
-			return new ApiResponse<>(401, "failure","failure");
+			return new ApiResponse<>(401, Constants.FAILURE,Constants.FAILURE);
 		
 	}
 	

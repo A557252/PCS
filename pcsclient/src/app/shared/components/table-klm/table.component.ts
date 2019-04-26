@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component,  Input } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -8,6 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TableComponent {
   @Input() headerList: [];
   @Input() rowList: any;
-  constructor() { }
-
+  constructor() { 
+  }
 }

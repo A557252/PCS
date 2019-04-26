@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.pcs.portal.model.FsdBatchScheduling;
 
-public interface FSD_Batch_SchedulingDao extends JpaRepository<FsdBatchScheduling, Integer> {
+public interface FsdBatchSchedulingDao extends JpaRepository<FsdBatchScheduling, Integer> {
 	
 	@Query(value="SELECT *\r\n" + 
 			"  FROM ( SELECT tmp.*, rownum rn\r\n" + 

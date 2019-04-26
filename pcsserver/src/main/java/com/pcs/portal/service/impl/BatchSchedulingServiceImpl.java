@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.pcs.portal.dao.FSD_Batch_SchedulingDao;
+import com.pcs.portal.dao.FsdBatchSchedulingDao;
 import com.pcs.portal.dao.PcsBatchSchedulingDao;
 import com.pcs.portal.model.FsdBatchScheduling;
 import com.pcs.portal.model.PcsBatchScheduling;
@@ -15,7 +15,7 @@ import com.pcs.portal.service.BatchSchedulingService;
 public class BatchSchedulingServiceImpl implements BatchSchedulingService {
 	
 	@Autowired
-	private FSD_Batch_SchedulingDao fsdBatchSchedulingDao;
+	private FsdBatchSchedulingDao fsdBatchSchedulingDao;
 	
 	@Autowired
 	private PcsBatchSchedulingDao pcsBatchSchedulingDao;

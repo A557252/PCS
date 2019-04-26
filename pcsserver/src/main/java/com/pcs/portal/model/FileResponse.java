@@ -4,10 +4,11 @@ public class FileResponse {
 	
 	private String parameter;
 	private String fileType;
+	private String id;
+
 	public String getParameter() {
 		return parameter;
 	}
-	public String id;
 	public void setParameter(String parameter) {
 		this.parameter = parameter;
 	}

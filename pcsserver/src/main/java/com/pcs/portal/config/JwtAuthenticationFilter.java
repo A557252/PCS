@@ -16,8 +16,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import static com.pcs.portal.model.Constants.HEADER_STRING;
-import static com.pcs.portal.model.Constants.TOKEN_PREFIX;
+import static com.pcs.portal.utils.Constants.HEADER_STRING;
+import static com.pcs.portal.utils.Constants.TOKEN_PREFIX;
 
 import java.io.IOException;
 import java.util.Arrays;

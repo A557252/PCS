@@ -3,13 +3,12 @@ package com.pcs.portal.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import com.pcs.portal.config.JwtTokenUtil;
 import com.pcs.portal.model.*;
 import com.pcs.portal.service.UserService;
+import com.pcs.portal.utils.Constants;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -33,11 +32,10 @@ public class AuthenticationController {
         final User user = userService.findOne(loginUser.getUsername());
         if(user.getEnvironment().equalsIgnoreCase(loginUser.getEnvironment())) {
         final String token = jwtTokenUtil.generateToken(user);
-        return new ApiResponse<>(200, "success",new AuthToken(token, user.getUsername()));
+        return new ApiResponse<>(200, Constants.SUCCESS,new AuthToken(token, user.getUsername()));
         }else {
         	//user environment not equal
-        	String error_return="{'message':'aunthentication failure'}";
-        	return new ApiResponse<>(401, "failure",error_return);
+        	return new ApiResponse<>(401, Constants.FAILURE,Constants.AUTHENTICATION_ERROR);
         }
     }
     

@@ -68,6 +68,7 @@ export class IncraImportWizardComponent {
     this.currentFileUpload=this.selectedFiles.item(0);
     this.incraImport.getParameter(this.currentFileUpload).subscribe(
       (response:any)=>{
+        console.log(response);
         this.parameterGot=response.result.parameter;
         this.idResponse=response.result.id;
         
@@ -84,5 +85,7 @@ export class IncraImportWizardComponent {
 
   incraImportForm(event){
     this.showOtherPartOfForm=false;
+    this.importDisabled=true;
+    this.fileName="SELECT FILE";
   }
 }

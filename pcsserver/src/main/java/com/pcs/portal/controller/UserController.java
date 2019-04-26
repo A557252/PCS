@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.pcs.portal.model.ApiResponse;
 import com.pcs.portal.model.AuthToken;
+import com.pcs.portal.utils.Constants;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -13,6 +14,6 @@ public class UserController {
 
 	@GetMapping("/checklogin")
     public ApiResponse<AuthToken> checklogin() {
-		return new ApiResponse<>(HttpStatus.OK.value(),"parameter",true);
+		return new ApiResponse<>(HttpStatus.OK.value(),Constants.PARAMETER,true);
 	}
 }

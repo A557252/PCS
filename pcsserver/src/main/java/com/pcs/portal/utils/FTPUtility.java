@@ -2,9 +2,9 @@ package com.pcs.portal.utils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.IOException;
 
-import org.springframework.web.multipart.MultipartFile;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.jcraft.jsch.Channel;
 import com.jcraft.jsch.ChannelSftp;
@@ -13,43 +13,30 @@ import com.jcraft.jsch.Session;
 
 public class FTPUtility {
 
+	protected final Log logger = LogFactory.getLog(getClass());
+	
 	JSch jsch ;
 	public FTPUtility(String file,String id){	
 		try {
 		jsch = new JSch();
-	    System.out.println("Connection established.");
 	    Session session = jsch.getSession(Constants.USER_NAME, Constants.HOST, Constants.PORT);
 	    session.setConfig("StrictHostKeyChecking", "no");
 	    session.setPassword(Constants.PASSWORD);
 	    session.connect();
-	    System.out.println("Connection established.");
-	    System.out.println("Creating SFTP Channel.");
+	    logger.info("Connection established.");
+	    logger.info("Creating SFTP Channel.");
 	    
 	    Channel channel=session.openChannel("sftp");
 	    channel.connect();
 	    ChannelSftp channelSftp=(ChannelSftp) channel;
 	    channelSftp.cd(Constants.HOME_LOCATION_KLM_PCS);
-	    //converting multipart file to file
-	    //File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+file.getOriginalFilename());
-	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+file+"&"+id);
-//	    file.transferTo(f1);
-//	    File f1=FTPUtility.multipartToFile(file);
+
+	    File f1=new File(Constants.ROOTFILE_LOCATION+Constants.PATH_DELIMETER+file+"&"+id);
 	    channelSftp.put(new FileInputStream(f1),file);
 	    channelSftp.exit();
 	    session.disconnect();
-		System.out.println("connection done");
 		}catch (Exception e) {
 
 		}
-	}
-	
-	public static File multipartToFile(MultipartFile multipart) 
-	{try {
-	    File convFile = new File( multipart.getOriginalFilename());
-	    multipart.transferTo(convFile);
-	    return convFile;
-	}catch (IOException e) {
-	}
-	return null;
 	}
 }

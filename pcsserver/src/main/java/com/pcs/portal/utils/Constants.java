@@ -3,9 +3,6 @@ package com.pcs.portal.utils;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.apache.tomcat.jni.File;
-
-
 public interface Constants {
 	public static String SUCCESS_STATUS = "{\"Status\" : true ,";
     public static String FAILURE_STATUS = "{\"Status\" : false ,";
@@ -22,6 +19,16 @@ public interface Constants {
     public static String DELETED_FAILURE = "\"Message\" : \"Deletion Failed\"}";
     public static String GET_SUCCESS = "\"Message\" : \"Fetched Successful\"}";
     public static String GET_FAILURE = "\"Message\" : \"Fetching Failed\"}";
+    public static String AUTHENTICATION_ERROR="{'message':'aunthentication failure'}";
+    public static String ERROR="error";
+    public static String FAILURE="failure";
+    public static String SUCCESS="success";
+    public static String FILEFORMATNOTSUPPORTED="file format not supported";
+    public static String CANNOTSTOREFILE="cannot store file";
+    public static String EMPTYFILE="Empty File";
+    public static String PARAMETER="parameter";
+    public static String PATH_DELIMETER="\\";
+    
     
     //initially trying with local
 	public static final Path ROOTFILE_LOCATION=Paths.get(new java.io.File("").getAbsolutePath()+"\\temp_upload");
@@ -33,4 +40,11 @@ public interface Constants {
 	public static final String HOST="nlsivm758.sdmc.ao-srv.com";
 	public static final String HOME_LOCATION_KLM_PCS="/home/fsdspcsa/pcs/klm";
 	
+	//KLMAirfrance
+    public static final int ACCESS_TOKEN_VALIDITY_SECONDS = 5*60*60;
+    public static final String SIGNING_KEY = "klmairfrance";
+    public static final String TOKEN_PREFIX = "Bearer ";
+    public static final String HEADER_STRING = "Authorization";
+	
+   
 }

@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 
 import com.pcs.portal.model.User;
 
-import static com.pcs.portal.model.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
-import static com.pcs.portal.model.Constants.SIGNING_KEY;
+import static com.pcs.portal.utils.Constants.ACCESS_TOKEN_VALIDITY_SECONDS;
+import static com.pcs.portal.utils.Constants.SIGNING_KEY;
 
 import java.io.Serializable;
 import java.util.Arrays;
@@ -19,8 +19,9 @@ import java.util.function.Function;
 
 @Component
 public class JwtTokenUtil implements Serializable {
+	private static final long serialVersionUID = 1L;
 
-    public String getUsernameFromToken(String token) {
+	public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);
     }
 

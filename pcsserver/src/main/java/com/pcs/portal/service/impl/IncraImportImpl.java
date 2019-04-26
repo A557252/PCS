@@ -6,19 +6,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.file.Files;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
+import java.sql.Date;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.pcs.portal.dao.FSD_Batch_SchedulingDao;
+import com.pcs.portal.dao.FsdBatchSchedulingDao;
 import com.pcs.portal.model.FileResponse;
 import com.pcs.portal.model.FsdBatchScheduling;
 import com.pcs.portal.service.IncraImport;
@@ -29,16 +27,18 @@ import com.sun.jmx.snmp.Timestamp;
 @Service
 public class IncraImportImpl implements IncraImport {
 
+	protected final Log logger = LogFactory.getLog(getClass());
+	
 	@Autowired
-	private FSD_Batch_SchedulingDao fsdBatchSchedulingdao;
+	private FsdBatchSchedulingDao fsdBatchSchedulingdao;
 	
 	@Transactional
 	@Override
-	public boolean StoreIncraFile(String incraFile,String id) {
+	public boolean storeIncraFile(String incraFile,String id) {
 		try {		
 		new FTPUtility(incraFile,id);
-		System.out.println("deleting temp file..."+incraFile+"&"+id);
-	    File f1=new File(Constants.ROOTFILE_LOCATION+"\\"+incraFile+"&"+id);
+		logger.info("deleting temp file..."+incraFile+"&"+id);
+	    File f1=new File(Constants.ROOTFILE_LOCATION+Constants.PATH_DELIMETER+incraFile+"&"+id);
 		if(f1.delete()) {
 			return true;
 		}
@@ -54,7 +54,6 @@ public class IncraImportImpl implements IncraImport {
 		String line;
 		String parameters="";
 		String fileType="";
-		FsdBatchScheduling fsdBatchScheduling;
 		InputStream readFile;
 		try {
 			readFile = incraFile.getInputStream();
@@ -66,18 +65,18 @@ public class IncraImportImpl implements IncraImport {
 				if(dataArray[0].contentEquals("C")) {
 					parameters= "'"+fileName+"','"+"','"+"'";
 					fileType="C";
-				}if(dataArray[0].contentEquals("D")) {
+				}else if(dataArray[0].contentEquals("D")) {
 					parameters= "'"+fileName+"','"+dataArray[1]+"','"+dataArray[2]+"'";
 					fileType="D";
 				}else {
-					return new FileResponse("error", "");
+					return new FileResponse(Constants.ERROR, "");
 				}
 			}
 			
 			return new FileResponse(parameters, fileType);
 			
 		} catch (IOException e) {
-			return new FileResponse("error", "");
+			return new FileResponse(Constants.ERROR, "");
 		}
 	}
 
@@ -88,24 +87,23 @@ public class IncraImportImpl implements IncraImport {
 		fsd.setName(name);
 		fsd.setParameters(parameters);
 		fsd.setRemarks(remarks);
-		fsd.setSchedule_date(new Date(System.currentTimeMillis()-11*60*60*1000));
-		fsd.setDate_created(new Date(System.currentTimeMillis()-11*60*60*1000));
-		fsd.setDate_modified(new Date(System.currentTimeMillis()-11*60*60*1000));
-		fsd.setUser_created("pcs_o");
-		fsd.setUser_modified("pcs_o");
+		fsd.setScheduleDate(new Date(System.currentTimeMillis()-11*60*60*1000));
+		fsd.setDateCreated(new Date(System.currentTimeMillis()-11*60*60*1000));
+		fsd.setDateModified(new Date(System.currentTimeMillis()-11*60*60*1000));
+		fsd.setUserCreated("pcs_o");
+		fsd.setUserModified("pcs_o");
 		fsdBatchSchedulingdao.save(fsd);
 		return true;
 	}
 
 	@Override
-	public String StoreIncraFileTemp(MultipartFile incraFile) {
+	public String storeIncraFileTemp(MultipartFile incraFile) {
 		long n = new Timestamp().getDateTime();
 		try {
 			Files.copy(incraFile.getInputStream(), com.pcs.portal.utils.Constants.ROOTFILE_LOCATION.resolve(incraFile.getOriginalFilename()+"&"+n));
 		} catch (IOException e) {
+			return Constants.ERROR;
 		}
 		return Long.toString(n);
-	}
-
-	
+	}	
 }
