@@ -87,9 +87,9 @@ public class IncraImportImpl implements IncraImport {
 		fsd.setName(name);
 		fsd.setParameters(parameters);
 		fsd.setRemarks(remarks);
-		fsd.setScheduleDate(new Date(System.currentTimeMillis()-11*60*60*1000));
-		fsd.setDateCreated(new Date(System.currentTimeMillis()-11*60*60*1000));
-		fsd.setDateModified(new Date(System.currentTimeMillis()-11*60*60*1000));
+		fsd.setScheduleDate(new Date(System.currentTimeMillis()-4*60*60*1000+30*60*1000));
+		fsd.setDateCreated(new Date(System.currentTimeMillis()-4*60*60*1000+30*60*1000));
+		fsd.setDateModified(new Date(System.currentTimeMillis()-4*60*60*1000+30*60*1000));
 		fsd.setUserCreated("pcs_o");
 		fsd.setUserModified("pcs_o");
 		fsdBatchSchedulingdao.save(fsd);

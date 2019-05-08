@@ -15,7 +15,6 @@ com\pcs\portal\controller\FileController.class
 com\pcs\portal\model\FileResponse.class
 com\pcs\portal\dao\UserDao.class
 com\pcs\portal\model\ApiResponse.class
-com\pcs\portal\dao\FSD_Batch_SchedulingDao.class
 com\pcs\portal\model\UserDto.class
 com\pcs\portal\config\JwtTokenUtil.class
 com\pcs\portal\PCSMaster.class
