@@ -1,0 +1,31 @@
+.button_style {
+    background-color: #E12C6C;
+    color: white;
+}
+
+.choose_file {
+    background-color: #E12C6C;
+    border-radius: 40px !important;
+}
+
+.custom-border-input{
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid #ddd;
+    outline: none;
+    padding-left: 0px;
+  }
+  .custom-border-input:focus{
+    border: none;
+    background-color: white;
+    outline: none;
+    border-bottom: 3px solid #0097D8;
+    box-shadow: none;
+  }
+  .custom-right{
+    text-align: right;
+    color: #B0B0B0;
+  }
+  p{
+      outline: none;
+  }

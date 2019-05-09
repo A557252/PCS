@@ -59,6 +59,7 @@ export class FsdBatchSchedulingComponent implements OnInit {
       (response:any)=>{
         this.fsdDataTotal=response.result;
         this.showSpinner=false;
+        console.log(this.fsdDataTotal);
       },
       error=>{
       }

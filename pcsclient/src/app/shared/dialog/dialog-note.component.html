@@ -1,0 +1,64 @@
+<h1 mat-dialog-title class="d-flex mb-0">
+    <button mat-icon-button class="ml-auto" mat-dialog-close>
+        <mat-icon aria-label="Example icon-button with a heart icon">clear</mat-icon>
+      </button>
+</h1>
+<div mat-dialog-content class="pb-5">
+  
+    <app-card-layout [cardContainerStyle]="'0px'" [cardIcon]="'import_export'" [cardHeader]="data.title">
+
+        <div class="row">
+            <label class="col-md-2 col-4 col-form-label custom-right">Job</label>
+            <div class="col-md-10 col-8">
+                <div class="form-group bmd-form-group is-filled">
+                <p type="text" class="form-control custom-border-input">{{data.job}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <label class="col-md-2 col-4 col-form-label custom-right">Schedule Date</label>
+            <div class="col-md-10 col-8">
+                <div class="form-group bmd-form-group is-filled">
+                <p type="text" class="form-control custom-border-input">{{data.scheduleDate | date:'dd-MM-yy hh:mm a'}}</p>
+                </div>
+            </div>
+        </div>
+                <div class="row">
+                    <label class="col-md-2 col-4 col-form-label custom-right">Parameters</label>
+                    <div class="col-md-10 col-8">
+                        <div class="form-group bmd-form-group is-filled">
+                        <p type="text" class="form-control custom-border-input">{{data.parameters}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-md-2 col-4 col-form-label custom-right">Remarks</label>
+                    <div class="col-md-10 col-8">
+                        <div class="form-group bmd-form-group is-filled">
+                        <p rows="1" type="text" class="form-control custom-border-input">{{data.remarks}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                <label class="col-md-2 col-4 col-form-label custom-right">Start Date</label>
+                <div class="col-md-4 col-8">
+                    <div class="form-group bmd-form-group is-filled">
+                    <p type="text" class="form-control custom-border-input">{{data.startDate | date:'dd-MM-yy hh:mm a'}}</p>
+                    </div>
+                </div>
+                <label class="col-md-2 col-4 col-form-label custom-right">End Date</label>
+                <div class="col-md-4 col-8">
+                    <div class="form-group bmd-form-group is-filled">
+                    <p type="text" class="form-control custom-border-input">{{data.endDate | date:'dd-MM-yy hh:mm a'}}</p>
+                    </div>
+                </div>
+                </div>
+      </app-card-layout>
+
+
+
+</div>
+<div mat-dialog-actions class="d-flex justify-content-center py-4">
+  <button mat-button mat-dialog-close cdkFocusInitial mat-raised-button class="button_style">Ok</button>
+</div>

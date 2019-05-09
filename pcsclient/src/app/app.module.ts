@@ -21,6 +21,7 @@ import { IncraImportWizardSubmitComponent } from './incra-import-wizard/incra-im
 import { DatePipe } from '@angular/common';
 import { NotAuthenticatedGuard } from './shared/guards/not-authenticated.guard';
 import { Constants } from './constant/data.constant';
+import { DialogNoteComponent } from './shared/dialog/dialog-note.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { Constants } from './constant/data.constant';
     NotImplementedComponent,
     IncraImportWizardSubmitComponent,
     DialogComponent,
+    DialogNoteComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,6 @@ import { Constants } from './constant/data.constant';
   ],
   providers: [AuthenticationService,AuthenticationGuard,DatePipe,NotAuthenticatedGuard,Constants],
   bootstrap: [AppComponent],
-  entryComponents:[DialogComponent]
+  entryComponents:[DialogComponent,DialogNoteComponent]
 })
 export class AppModule { }

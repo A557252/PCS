@@ -7,6 +7,7 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-incra-import-wizard-submit',
@@ -51,13 +52,14 @@ export class IncraImportWizardSubmitComponent implements OnInit {
     });
   }
   onClicked(value: string) {
-    this.openDialog(this.msg);
+    this.openDialog(this.msg,"Cancel Incra Import");
   }
-  openDialog(msd): void {
+  openDialog(msd,tit): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '550px',
       data: {
-        message:msd
+        title:tit,
+        message:msd 
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -71,7 +73,7 @@ export class IncraImportWizardSubmitComponent implements OnInit {
         if(event.type===HttpEventType.UploadProgress){
           this.progress.percentage=Math.round(100*event.loaded/event.total);
           if(this.progress.percentage==100){
-            this.openDialog(this.msg);
+            this.openDialog(this.msg,"Successfull Incra Import");
             this.afterIncraWizardSubmit.emit({"success":true});
           }
         }else if(event instanceof HttpResponse){
@@ -88,7 +90,7 @@ export class IncraImportWizardSubmitComponent implements OnInit {
     this.incraImport.cancelIncra(this.FileName,this.idResponse).subscribe(
       (res:any)=>{
               this.incraForm.reset();
-              this.openDialog("incra import operation canceled");
+              this.openDialog("incra import operation canceled","Cancel Incra Import");
               this.afterIncraWizardSubmit.emit({"success":true});
       }
     )

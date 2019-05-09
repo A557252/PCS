@@ -9,9 +9,12 @@ import { MediaMatcher } from '@angular/cdk/layout';
   styleUrls: ['./side-menu.component.scss']
 })
 export class SideMenuComponent implements OnInit {
+
+  MainTitle:string='Home';
+
   sideNavList: any = [
     {
-      title: 'Home', icon: 'home', link:'/dashboard'
+      title: 'Home', icon: 'home', link:'/dashboard/home'
     },
     {
       title: 'Maintain', icon: 'settings', link:'/dashboard/umimplemented'
@@ -20,8 +23,6 @@ export class SideMenuComponent implements OnInit {
     {
       title: 'Wizards', icon: 'library_books',
       subMenu: [
-        { title: 'Snapshot/Compose Schedule Wizard', icon: 'SW', link: '/dashboard/umimplemented' },
-        { title: 'Interface Wizard', icon: 'IW', link: '/dashboard/umimplemented'  },
         { title: 'Incra Import Wizard', icon: 'IIW', link: './wizards/incrawizard', }
       ]
     },
@@ -90,4 +91,9 @@ export class SideMenuComponent implements OnInit {
     }
     this.changeDetectorRef.detectChanges();
   }
+
+  selectedTitle(title){
+    this.MainTitle=title;
+  }
+
 }

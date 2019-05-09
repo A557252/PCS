@@ -2,21 +2,21 @@
   <table class="table table-hover table-striped">
     <thead>
       <tr>
-        <th *ngFor="let header of headerList" class="custom-th">{{header}}</th>
-        <th style="width: 150px" class="custom-th">Actions</th>
+        <th *ngFor="let header of headerList" class="custom-th">{{header|uppercase}}</th>
+        <th style="width: 150px" class="custom-th">ACTIONS</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let rowdata of rowList">
         <td>{{rowdata.name}}</td>
-        <td>{{rowdata.scheduleDate}}</td>
-        <td>{{rowdata.startDate}}</td>
-        <td>{{rowdata.endDate}}</td>
+        <td>{{rowdata.scheduleDate | date:'dd-MM-yy hh:mm a'}}</td>
+        <td>{{rowdata.startDate | date:'dd-MM-yy hh:mm:ss a'}}</td>
+        <td>{{rowdata.endDate | date:'dd-MM-yy hh:mm:ss a'}}</td>
         <td>{{rowdata.parameters}}</td>
         <td>{{rowdata.remarks}}</td>
         <td class="td-actions text-center">
           <button mat-icon-button color="primary">
-            <mat-icon aria-label="Example icon-button with a heart icon">file_copy</mat-icon>
+            <mat-icon aria-label="Example icon-button with a heart icon" (click)="openDialogs(rowdata)">file_copy</mat-icon>
           </button>
           <button mat-icon-button color="warn">
             <mat-icon aria-label="Example icon-button with a heart icon">delete</mat-icon>

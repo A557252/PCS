@@ -9,6 +9,7 @@ import { BatchSchedulingsComponent } from './exports/batch-schedulings/batch-sch
 import { NotImplementedComponent } from './not-implemented/not-implemented.component';
 import { IncraImportWizardSubmitComponent } from './incra-import-wizard/incra-import-wizard-submit/incra-import-wizard-submit.component';
 import { NotAuthenticatedGuard } from './shared/guards/not-authenticated.guard';
+import { DashboardComponent } from './home/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   {
     path: 'dashboard', component: SideMenuComponent, canActivate:[AuthenticationGuard],
     children: [
+      {path:'home',component:DashboardComponent},
       { path: 'wizards/incrawizard', component: IncraImportWizardComponent},
       {path:'exports/batchscheduling',component:BatchSchedulingsComponent},
       {path:'wizards/submitImportIncraWizard', component: IncraImportWizardSubmitComponent},

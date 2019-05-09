@@ -6,14 +6,14 @@ export interface DialogData {
 }
 
 @Component({
-    selector: 'app-dialog',
-    templateUrl: 'dialog.component.html',
+    selector: 'app-dialog-note',
+    templateUrl: 'dialog-note.component.html',
     styleUrls:['dialog.component.css']
 })
-export class DialogComponent {
+export class DialogNoteComponent {
 
     constructor(
-        public dialogRef: MatDialogRef<DialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { dialogRef.disableClose = true; }
+        public dialogRef: MatDialogRef<DialogNoteComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) { dialogRef.disableClose = true; }
 
     onNoClick(): void {
         this.dialogRef.close();

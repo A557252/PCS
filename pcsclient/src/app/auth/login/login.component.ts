@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(private route:ActivatedRoute,private authenticationService:AuthenticationService,private tokenManagement:TokenmanagemnetService,private router:Router) { }
   
   ngOnInit() {
-    this.returnUrl=this.route.snapshot.queryParams['returnUrl'] || '/dashboard/wizards/incrawizard';
+    this.returnUrl=this.route.snapshot.queryParams['returnUrl'] || '/dashboard/home';
   }
 
   submitLoginForm(loginFormData){   
