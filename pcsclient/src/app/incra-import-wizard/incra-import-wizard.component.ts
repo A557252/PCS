@@ -48,7 +48,7 @@ export class IncraImportWizardComponent {
   }
   onFileChange(event) {
     this.selectedFiles=event.target.files;
-    this.fileName=this.selectedFiles.item(0).name;
+    this.fileName=this.selectedFiles[0].name;
     if(this.fileName.split(".")[1]!="dat"){
       this.errorFileUpload=true;
       this.importDisabled=true;
@@ -66,7 +66,7 @@ export class IncraImportWizardComponent {
 
   getParameters(){
     this.currentFileUpload=this.selectedFiles.item(0);
-    this.incraImport.getParameter(this.currentFileUpload).subscribe(
+    this.incraImport.getParameter(this.currentFileUpload,this.fileName).subscribe(
       (response:any)=>{
         console.log(response);
         this.parameterGot=response.result.parameter;

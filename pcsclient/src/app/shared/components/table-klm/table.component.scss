@@ -8,17 +8,24 @@ td{
     padding: 0px;
     justify-content: center;
     padding-top: 5px;
-    padding-left: 5px;
+    padding-left: 10px;
 }
 th{
     font-size: 18px;
-    font-family: Roboto,Helvetica,Arial,sans-serif;
+    font-family: Verdana, Geneva, sans-serif;
     color: #e12c6c;
+    font-weight: 600;
+    background-color: #eee;
 }
 .custom-th{
-    font-size: 18px;
+    font-size: 16px;
 }
-
+td{
+    font-family: Verdana, Geneva, sans-serif;
+    color: black;
+    font-weight:450;
+    font-size: 15px;
+}
 
 // .table-striped>tbody>tr:nth-child(odd)>td,
 // .table-striped>tbody>tr:nth-child(odd)>th {

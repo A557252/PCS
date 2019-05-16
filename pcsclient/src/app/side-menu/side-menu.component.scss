@@ -23,11 +23,15 @@ mat-sidenav {
 .side_nav_title_font {
     color: #3C4858;
 }
+.side_nav_title_font:hover {
+    color:#00A1E4;
+}
 .nav_menu_li{
     height: 48px;
     cursor: pointer;
     &:hover{
         background: rgba(0,0,0,.04);
+        color: #00A1E4;
     }
 }
 mat-sidenav-container {

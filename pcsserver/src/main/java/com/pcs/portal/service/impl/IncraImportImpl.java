@@ -49,8 +49,8 @@ public class IncraImportImpl implements IncraImport {
 	}
 
 	@Override
-	public FileResponse makeEntryDb(MultipartFile incraFile) {
-		String fileName=incraFile.getOriginalFilename();
+	public FileResponse makeEntryDb(MultipartFile incraFile,String filename) {
+		String fileName=filename;
 		String line;
 		String parameters="";
 		String fileType="";

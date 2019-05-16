@@ -11,6 +11,7 @@ export class TableComponent {
   @Input() headerList: [];
   @Input() rowList: any;
   @Input() title;
+
   constructor(public dialog: MatDialog) { 
   }
 

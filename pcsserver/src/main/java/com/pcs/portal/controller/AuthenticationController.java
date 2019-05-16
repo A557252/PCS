@@ -38,5 +38,4 @@ public class AuthenticationController {
         	return new ApiResponse<>(401, Constants.FAILURE,Constants.AUTHENTICATION_ERROR);
         }
     }
-    
 }

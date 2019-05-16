@@ -5,6 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.pcs.portal.dao.UserDao;
@@ -21,7 +22,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	
 	@Autowired
 	private UserDao userDao;
-
+	@Autowired
+	private BCryptPasswordEncoder bcryptEncoder;
+	
+	
 	public UserDetails loadUserByUsername(String username) {
 		User user = userDao.findByUsername(username);
 		if(user == null){
@@ -45,5 +49,4 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 	public User findOne(String username) {
 		return userDao.findByUsername(username);
 	}
-
 }

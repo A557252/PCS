@@ -33,9 +33,10 @@ export class IncraImportService {
     return this.httpClient.request(req);
   }
 
-  getParameter(file:File){
+  getParameter(file:File,filename){
     let formDatas:FormData=new FormData();
     formDatas.append('incraFile',file);
+    formDatas.append('filename',filename);
     let token=this.getToken();
     const header=new HttpHeaders({
       'Authorization':token
